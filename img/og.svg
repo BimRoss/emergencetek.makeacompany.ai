@@ -9,9 +9,14 @@
       <stop offset="0.5" stop-color="#8B5CF6"/>
       <stop offset="1" stop-color="#FF9E2C"/>
     </linearGradient>
-    <linearGradient id="mark" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#2196F3"/>
-      <stop offset="1" stop-color="#6D28D9"/>
+    <linearGradient id="etgFill" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#9BDDFF"/>
+    </linearGradient>
+    <linearGradient id="etgArc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4DD0FF"/>
+      <stop offset="0.5" stop-color="#7AC7FF"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
     </linearGradient>
     <radialGradient id="halo1" cx="0.2" cy="0.2" r="0.6">
       <stop offset="0" stop-color="#2196F3" stop-opacity="0.35"/>
@@ -26,14 +31,14 @@
   <rect width="1200" height="630" fill="url(#halo1)"/>
   <rect width="1200" height="630" fill="url(#halo2)"/>
 
-  <g transform="translate(80, 120)">
-    <rect width="76" height="76" rx="20" fill="url(#mark)"/>
-    <path d="M22 50 L38 22 L54 50 M30 50 L30 64 L46 64 L46 50" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <circle cx="38" cy="40" r="3.5" fill="white"/>
+  <!-- ETG mark -->
+  <g transform="translate(80, 110)">
+    <path d="M 4 36 C 40 -2 116 -2 152 36" stroke="url(#etgArc)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <text x="78" y="86" text-anchor="middle" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="60" letter-spacing="2" fill="url(#etgFill)">ETG</text>
   </g>
 
-  <text x="180" y="155" font-family="Inter, sans-serif" font-weight="800" font-size="34" fill="#E6EAF2">EmergenceTek</text>
-  <text x="180" y="185" font-family="Inter, sans-serif" font-weight="600" font-size="14" fill="#6C7791" letter-spacing="3">GROUP · AWS SELECT TIER PARTNER</text>
+  <text x="260" y="150" font-family="Inter, sans-serif" font-weight="800" font-size="34" fill="#E6EAF2">EmergenceTek</text>
+  <text x="260" y="185" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#4DD0FF" letter-spacing="3">GROUP · AWS SELECT TIER PARTNER</text>
 
   <text x="80" y="320" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="74" fill="#E6EAF2" letter-spacing="-2">Cloud, data &amp; software</text>
   <text x="80" y="400" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="74" fill="url(#grad)" letter-spacing="-2">engineering for production.</text>
