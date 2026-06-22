@@ -1,0 +1,1591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>EmergenceTek Group · AWS Partner · Cloud, Data & Application Engineering</title>
+<meta name="description" content="EmergenceTek Group is an AWS Select Tier Partner delivering cloud migration, data engineering, custom application development, and managed services for healthcare, manufacturing, and retail." />
+<meta name="theme-color" content="#05070D" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+<meta property="og:title" content="EmergenceTek Group · AWS Select Tier Partner" />
+<meta property="og:description" content="Cloud, data, and application engineering for regulated industries. AWS Select Tier Partner based in Buffalo, NY." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="/img/og.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #05070D;
+    --ink-2: #0A0E1A;
+    --ink-3: #111728;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.16);
+    --text: #E6EAF2;
+    --text-mute: #9AA4B8;
+    --text-dim: #6C7791;
+    --cyan: #4DD0FF;
+    --cyan-deep: #2196F3;
+    --cyan-soft: rgba(77,208,255,0.12);
+    --violet: #8B5CF6;
+    --violet-deep: #6D28D9;
+    --amber: #FF9E2C;
+    --amber-deep: #F97316;
+    --aws: #FF9900;
+    --green: #36D399;
+    --grad-1: linear-gradient(135deg, #4DD0FF 0%, #8B5CF6 50%, #FF9E2C 100%);
+    --grad-2: linear-gradient(135deg, #2196F3 0%, #6D28D9 100%);
+    --grad-text: linear-gradient(135deg, #FFFFFF 0%, #4DD0FF 50%, #8B5CF6 100%);
+    --halo: radial-gradient(60% 50% at 50% 0%, rgba(77,208,255,0.18), transparent 70%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: var(--text);
+    background: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; height: auto; }
+
+  .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    padding: 6px 12px;
+    border: 1px solid rgba(77,208,255,0.25);
+    border-radius: 999px;
+    background: rgba(77,208,255,0.05);
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all .2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--grad-2);
+    color: white;
+    box-shadow: 0 8px 32px rgba(33,150,243,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(33,150,243,0.5), inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border-color: var(--line-strong);
+    backdrop-filter: blur(8px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); }
+  .btn .arrow { transition: transform .2s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ===================== NAV ===================== */
+  header.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 14px 0;
+    background: rgba(5,7,13,0.65);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  header.nav.scrolled {
+    background: rgba(5,7,13,0.92);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+  .brand .logo-mark {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--grad-2);
+    display: grid; place-items: center;
+    box-shadow: 0 4px 18px rgba(33,150,243,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .brand .logo-mark::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+    animation: shine 4s linear infinite;
+  }
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .brand .logo-mark svg { position: relative; z-index: 1; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-name b { font-weight: 800; }
+  .brand-name span { font-size: 10px; letter-spacing: 0.16em; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    color: var(--text-mute);
+    font-weight: 500;
+    transition: color .15s, background .15s;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .nav-cta { display: flex; align-items: center; gap: 10px; }
+  .nav-cta .btn { padding: 10px 18px; font-size: 14px; }
+
+  .nav-toggle {
+    display: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  @media (max-width: 960px) {
+    .nav-links, .nav-cta .btn-ghost { display: none; }
+    .nav-toggle { display: inline-flex; }
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    position: relative;
+    padding: 160px 0 120px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.18), transparent 60%),
+      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.18), transparent 60%),
+      radial-gradient(45% 45% at 50% 95%, rgba(255,158,44,0.10), transparent 60%),
+      var(--ink);
+  }
+  .grid-overlay {
+    position: absolute; inset: 0; z-index: -1; opacity: 0.4;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    z-index: -1;
+    animation: float 14s ease-in-out infinite;
+  }
+  .orb-1 { width: 540px; height: 540px; top: -120px; left: -120px; background: var(--cyan-deep); }
+  .orb-2 { width: 460px; height: 460px; top: 140px; right: -100px; background: var(--violet); animation-delay: -4s; }
+  .orb-3 { width: 360px; height: 360px; bottom: -80px; left: 35%; background: var(--amber-deep); opacity: 0.25; animation-delay: -8s; }
+  @keyframes float {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(20px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 72px;
+    align-items: center;
+  }
+  @media (max-width: 1080px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero { padding: 140px 0 80px; }
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(40px, 6.2vw, 76px);
+    margin: 22px 0 24px;
+  }
+  .hero-copy h1 .accent {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--text-mute);
+    max-width: 580px;
+    margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+
+  .partner-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 24px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .partner-row > span {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); font-weight: 600;
+  }
+  .partner-badges { display: flex; flex-wrap: wrap; gap: 14px; }
+  .partner-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mute);
+  }
+  .partner-pill.aws { color: var(--aws); border-color: rgba(255,153,0,0.35); background: rgba(255,153,0,0.06); }
+  .partner-pill .check { width: 14px; height: 14px; }
+
+  /* ===================== HERO CARD (architecture viz) ===================== */
+  .hero-viz {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 560px;
+    margin-left: auto;
+  }
+  .viz-card {
+    position: absolute; inset: 0;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid var(--line-strong);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .viz-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(60% 60% at 50% 0%, rgba(77,208,255,0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .viz-header {
+    position: relative;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+  }
+  .viz-header .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .viz-header .dot.r { background: #FF5F57; }
+  .viz-header .dot.y { background: #FEBC2E; }
+  .viz-header .dot.g { background: #28C840; }
+  .viz-header .title { margin-left: 14px; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); }
+  .viz-header .live { margin-left: auto; font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 6px; }
+  .viz-header .live::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 8px var(--green); animation: pulse 1.5s infinite;
+  }
+
+  .viz-body { position: relative; padding: 24px; height: calc(100% - 44px); }
+  .arch-svg { width: 100%; height: 100%; }
+
+  .node-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    fill: var(--text-mute);
+    font-weight: 600;
+  }
+  .node-rect {
+    fill: rgba(255,255,255,0.04);
+    stroke: var(--line-strong);
+    stroke-width: 1;
+  }
+  .node-rect.aws { fill: rgba(255,153,0,0.08); stroke: rgba(255,153,0,0.35); }
+  .node-rect.cyan { fill: rgba(77,208,255,0.08); stroke: rgba(77,208,255,0.35); }
+  .node-rect.violet { fill: rgba(139,92,246,0.10); stroke: rgba(139,92,246,0.40); }
+  .node-icon { fill: var(--text); }
+  .flow-line {
+    stroke-dasharray: 4 4;
+    stroke-linecap: round;
+    fill: none;
+    stroke-width: 1.5;
+    animation: dash 1s linear infinite;
+  }
+  @keyframes dash { to { stroke-dashoffset: -16; } }
+  .flow-line.cyan { stroke: var(--cyan); }
+  .flow-line.violet { stroke: var(--violet); }
+  .flow-line.amber { stroke: var(--amber); }
+
+  /* Floating metric chips */
+  .metric-chip {
+    position: absolute;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+    animation: float-chip 6s ease-in-out infinite;
+  }
+  .metric-chip .ic {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .metric-chip .ic.cyan { background: rgba(77,208,255,0.15); color: var(--cyan); }
+  .metric-chip .ic.amber { background: rgba(255,153,0,0.15); color: var(--aws); }
+  .metric-chip .ic.green { background: rgba(54,211,153,0.15); color: var(--green); }
+  .metric-chip .v { font-size: 16px; font-weight: 700; line-height: 1.1; }
+  .metric-chip .l { font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; margin-top: 2px; }
+  .chip-1 { top: 10%; left: -36px; }
+  .chip-2 { bottom: 26%; right: -38px; animation-delay: -2s; }
+  .chip-3 { bottom: -22px; left: 18%; animation-delay: -4s; }
+  @keyframes float-chip {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media (max-width: 1080px) {
+    .chip-1 { left: 4px; }
+    .chip-2 { right: 4px; }
+  }
+
+  /* ===================== STAT BAR ===================== */
+  .stat-bar {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding: 56px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-bar::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(50% 100% at 50% 50%, rgba(77,208,255,0.06), transparent);
+  }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; } }
+  .stat { text-align: center; padding: 0 12px; }
+  .stat .v {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+  }
+  .stat .v .suf { font-size: 0.6em; color: var(--cyan); -webkit-text-fill-color: var(--cyan); }
+  .stat .l {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ===================== SECTION WRAP ===================== */
+  section { padding: 110px 0; position: relative; }
+  .sec-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
+  .sec-head h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    margin: 18px 0 18px;
+  }
+  .sec-head h2 .accent {
+    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sec-head p {
+    color: var(--text-mute);
+    font-size: 17px;
+  }
+
+  /* ===================== SERVICE BENTO ===================== */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 18px;
+  }
+  .card {
+    position: relative;
+    border-radius: 22px;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(77,208,255,0.3);
+    background: linear-gradient(180deg, rgba(77,208,255,0.04), rgba(255,255,255,0.01));
+  }
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(60% 60% at 50% 0%, var(--card-glow, transparent), transparent 70%);
+    opacity: 0; transition: opacity .25s;
+    pointer-events: none;
+  }
+  .card:hover::before { opacity: 1; }
+  .card .ic {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--card-bg, rgba(77,208,255,0.10));
+    color: var(--card-fg, var(--cyan));
+    display: grid; place-items: center;
+    margin-bottom: 22px;
+    border: 1px solid var(--card-border, rgba(77,208,255,0.20));
+  }
+  .card h3 { margin: 0 0 10px; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+  .card p { margin: 0; color: var(--text-mute); font-size: 14.5px; line-height: 1.65; }
+  .card .meta {
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .card .tag {
+    font-size: 11.5px; font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-mute);
+    border: 1px solid var(--line);
+  }
+
+  .card.span-3 { grid-column: span 3; }
+  .card.span-2 { grid-column: span 2; }
+  .card.span-4 { grid-column: span 4; }
+  .card.tall { min-height: 320px; }
+
+  @media (max-width: 980px) {
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .card.span-3, .card.span-2, .card.span-4 { grid-column: span 1; }
+  }
+
+  /* Hero feature card with embedded diagram */
+  .card-feature {
+    background: linear-gradient(135deg, rgba(33,150,243,0.10), rgba(139,92,246,0.06));
+    border-color: rgba(77,208,255,0.25);
+  }
+  .card-feature .ribbon {
+    position: absolute; top: 22px; right: 22px;
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--cyan); font-weight: 700;
+    padding: 5px 10px;
+    background: rgba(77,208,255,0.10);
+    border: 1px solid rgba(77,208,255,0.30);
+    border-radius: 999px;
+  }
+
+  /* ===================== INDUSTRY ===================== */
+  .industries {
+    background: linear-gradient(180deg, var(--ink), var(--ink-2));
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 880px) { .ind-grid { grid-template-columns: 1fr; } }
+  .ind-card {
+    position: relative;
+    border-radius: 22px;
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    transition: transform .25s, border-color .25s;
+  }
+  .ind-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.25); }
+  .ind-card .hex {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    margin-bottom: 26px;
+    display: grid; place-items: center;
+    background: var(--grad-2);
+    box-shadow: 0 12px 30px rgba(33,150,243,0.25);
+  }
+  .ind-card.violet .hex { background: linear-gradient(135deg, #8B5CF6, #EC4899); box-shadow: 0 12px 30px rgba(139,92,246,0.25); }
+  .ind-card.amber .hex { background: linear-gradient(135deg, #FF9E2C, #F97316); box-shadow: 0 12px 30px rgba(255,158,44,0.25); }
+  .ind-card h3 { margin: 0 0 12px; font-size: 24px; }
+  .ind-card p { color: var(--text-mute); font-size: 15px; margin: 0 0 22px; }
+  .ind-card ul {
+    margin: 0; padding: 0; list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ind-card li {
+    font-size: 13.5px;
+    color: var(--text-mute);
+    padding-left: 22px;
+    position: relative;
+  }
+  .ind-card li::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 12px; height: 2px; background: var(--cyan); border-radius: 2px;
+  }
+  .ind-card.violet li::before { background: var(--violet); }
+  .ind-card.amber li::before { background: var(--amber); }
+
+  /* ===================== ARCHITECTURE SHOWCASE ===================== */
+  .architecture {
+    background:
+      radial-gradient(60% 60% at 80% 30%, rgba(139,92,246,0.10), transparent 60%),
+      radial-gradient(40% 60% at 20% 70%, rgba(77,208,255,0.10), transparent 60%),
+      var(--ink);
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 1000px) { .arch-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .arch-copy h2 { font-size: clamp(28px, 3.4vw, 44px); margin: 18px 0 22px; }
+  .arch-copy p { color: var(--text-mute); font-size: 16.5px; margin-bottom: 30px; }
+  .pipeline {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .pipeline-step {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .pipeline-step .num {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    background: rgba(77,208,255,0.10);
+    color: var(--cyan);
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid rgba(77,208,255,0.25);
+    flex-shrink: 0;
+  }
+  .pipeline-step .lbl { font-weight: 600; font-size: 15px; }
+  .pipeline-step .desc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+
+  .arch-diagram {
+    position: relative;
+    padding: 36px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .arch-diagram::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(50% 50% at 50% 0%, rgba(77,208,255,0.10), transparent);
+  }
+  .arch-diagram svg { width: 100%; height: auto; position: relative; }
+
+  /* ===================== CERTS ===================== */
+  .certs {
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--ink-2);
+  }
+  .cert-label {
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 36px;
+  }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 980px) { .cert-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 540px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cert-pill {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 18px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    color: var(--text-mute);
+    font-weight: 600;
+    font-size: 13.5px;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .cert-pill:hover {
+    border-color: rgba(77,208,255,0.3);
+    color: var(--text);
+    background: rgba(77,208,255,0.04);
+  }
+  .cert-pill svg { flex-shrink: 0; }
+
+  /* ===================== PROCESS / TIMELINE ===================== */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    counter-reset: step;
+  }
+  @media (max-width: 980px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .process-grid { grid-template-columns: 1fr; } }
+  .step-card {
+    padding: 28px 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    position: relative;
+    counter-increment: step;
+  }
+  .step-card::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .step-card h4 { margin: 0 0 10px; font-size: 18px; font-weight: 700; }
+  .step-card p { margin: 0; color: var(--text-mute); font-size: 14px; line-height: 1.6; }
+
+  /* ===================== CTA ===================== */
+  .cta {
+    padding: 110px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card {
+    position: relative;
+    padding: 70px 40px;
+    border-radius: 32px;
+    background:
+      radial-gradient(60% 70% at 50% 0%, rgba(33,150,243,0.20), transparent 60%),
+      linear-gradient(180deg, rgba(33,150,243,0.05), rgba(139,92,246,0.05));
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+  }
+  .cta-card .inner { position: relative; }
+  .cta h2 { font-size: clamp(32px, 4vw, 52px); margin: 16px 0 18px; }
+  .cta h2 .accent { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cta p { color: var(--text-mute); font-size: 17px; max-width: 580px; margin: 0 auto 36px; }
+  .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    border-top: 1px solid var(--line);
+    background: var(--ink-2);
+    padding: 70px 0 30px;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  .foot-brand p { color: var(--text-mute); font-size: 14px; margin: 18px 0 0; max-width: 320px; }
+  .foot-col h5 {
+    margin: 0 0 18px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+  .foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .foot-col a { color: var(--text-mute); font-size: 14px; transition: color .15s; }
+  .foot-col a:hover { color: var(--text); }
+  .foot-col .contact-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-mute); }
+  .foot-col .contact-row svg { color: var(--cyan); flex-shrink: 0; margin-top: 3px; }
+  .foot-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .socials { display: flex; gap: 10px; }
+  .socials a {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    color: var(--text-mute);
+    transition: all .2s;
+  }
+  .socials a:hover { color: var(--text); border-color: var(--cyan); background: rgba(77,208,255,0.08); }
+
+  /* ===================== ANIMATIONS ===================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.in > *:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.08s; }
+  .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.16s; }
+  .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.24s; }
+  .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.32s; }
+  .reveal-stagger.in > *:nth-child(6) { transition-delay: 0.40s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-stagger > * { opacity: 1; transform: none; transition: none; }
+    .orb, .metric-chip, .flow-line, .brand .logo-mark::before, .eyebrow .dot { animation: none; }
+  }
+
+  /* Marquee */
+  .marquee {
+    overflow: hidden;
+    margin-top: 32px;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: marquee 28s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 16px;
+    opacity: 0.7;
+  }
+  .marquee-item::after {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#" class="brand">
+      <span class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M4 14 L12 4 L20 14 M8 14 L8 20 L16 20 L16 14" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="11" r="1.6" fill="white"/>
+        </svg>
+      </span>
+      <span class="brand-name">
+        <b>EmergenceTek</b>
+        <span>Group</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#platform">Platform</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+17164064544" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
+        (716) 406-4544
+      </a>
+      <a href="#contact" class="btn btn-primary">Start a project <span class="arrow">→</span></a>
+      <button class="nav-toggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="dot"></span> AWS Select Tier Partner · Buffalo, NY</span>
+      <h1 class="display">
+        Cloud, data, and software engineering for
+        <span class="accent">teams that ship in production.</span>
+      </h1>
+      <p class="hero-sub">
+        We design AWS-native platforms, migrate stuck workloads off legacy stacks, and ship the dashboards and applications that move the business. Healthcare, manufacturing, retail. Built by certified engineers, owned end to end.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
+        <a href="#platform" class="btn btn-ghost">See the platform</a>
+      </div>
+      <div class="partner-row">
+        <span>Trusted by</span>
+        <div class="partner-badges">
+          <span class="partner-pill aws">
+            <svg width="20" height="14" viewBox="0 0 60 36" fill="currentColor"><path d="M16.5 14.2c0 .8.1 1.5.3 2 .2.5.5 1 .8 1.6.1.2.2.4.2.5 0 .2-.1.5-.4.7l-1.3.9c-.2.1-.4.2-.5.2-.2 0-.4-.1-.6-.3-.3-.3-.5-.6-.7-.9-.2-.3-.4-.6-.7-1-1.6 1.9-3.5 2.8-5.9 2.8-1.7 0-3-.5-4-1.4-1-1-1.5-2.2-1.5-3.8 0-1.7.6-3.1 1.8-4.1 1.2-1 2.8-1.5 4.9-1.5.7 0 1.4.1 2.1.2.7.1 1.5.3 2.3.5v-1.4c0-1.5-.3-2.6-.9-3.2-.7-.6-1.8-.9-3.4-.9-.7 0-1.4.1-2.2.3-.7.2-1.4.4-2.1.7-.3.1-.5.2-.7.3-.1 0-.3.1-.4.1-.3 0-.5-.2-.5-.7v-1c0-.4 0-.6.2-.8.1-.2.4-.3.7-.5.7-.4 1.6-.7 2.6-1 1-.3 2.1-.4 3.2-.4 2.4 0 4.2.5 5.3 1.7 1.1 1.1 1.7 2.8 1.7 5.1v6.7zm-8.2 3.1c.7 0 1.4-.1 2.1-.4.7-.2 1.4-.7 2-1.3.4-.4.6-.9.8-1.4.1-.5.2-1.1.2-1.9v-.9c-.6-.1-1.2-.3-1.9-.4-.7-.1-1.3-.1-2-.1-1.4 0-2.4.3-3.1.9-.7.5-1 1.3-1 2.4 0 1 .3 1.8.8 2.3.5.5 1.2.8 2.1.8zm16.2 2.2c-.5 0-.8-.1-1-.3-.2-.2-.4-.5-.5-1L18.1 4.7c-.1-.5-.2-.8-.2-1 0-.4.2-.6.6-.6h2c.5 0 .8.1 1 .3.2.2.3.5.5 1l3.3 13.1L28.3 4.4c.1-.5.3-.8.5-1 .2-.2.6-.3 1-.3h1.6c.5 0 .8.1 1 .3.2.2.4.5.5 1l3.1 13.3L39.3 4.4c.1-.5.3-.8.5-1 .2-.2.5-.3 1-.3h1.9c.4 0 .6.2.6.6 0 .1 0 .3-.1.4 0 .2-.1.4-.2.7L37.9 18c-.1.5-.3.8-.5 1-.2.2-.5.3-1 .3h-1.7c-.5 0-.8-.1-1-.3-.2-.2-.4-.5-.5-1L30.2 5.2 27.3 18c-.1.5-.3.8-.5 1-.2.2-.6.3-1 .3h-1.3zm25.9.6c-1.1 0-2.2-.1-3.3-.4-1.1-.3-1.9-.5-2.5-.8-.4-.2-.6-.4-.7-.6-.1-.2-.1-.4-.1-.6V18c0-.5.2-.7.5-.7.1 0 .3 0 .4.1.1 0 .3.1.5.2.7.3 1.5.5 2.3.7.8.2 1.6.2 2.5.2 1.3 0 2.3-.2 3-.7.7-.5 1.1-1.1 1.1-2 0-.6-.2-1.1-.6-1.5-.4-.4-1.2-.8-2.3-1.1l-3.3-1c-1.7-.5-2.9-1.3-3.7-2.3-.7-1-1.1-2.2-1.1-3.4 0-1 .2-1.9.6-2.6.4-.8.9-1.4 1.7-1.9.7-.5 1.5-.9 2.5-1.2 1-.3 2-.4 3-.4.5 0 1 0 1.6.1.6.1 1 .2 1.5.3.5.1.9.2 1.3.4.4.1.7.3.9.4.3.2.5.4.6.6.1.2.2.4.2.7v.9c0 .5-.2.8-.5.8-.2 0-.5-.1-.9-.3-1.3-.6-2.8-.9-4.4-.9-1.2 0-2.2.2-2.8.6-.6.4-1 1-1 1.9 0 .6.2 1.1.7 1.5.4.4 1.3.8 2.5 1.2l3.2 1c1.7.5 2.9 1.3 3.6 2.2.7.9 1.1 2 1.1 3.2 0 1-.2 1.9-.6 2.7-.4.8-1 1.5-1.7 2-.7.6-1.6 1-2.6 1.3-1 .2-2.1.4-3.3.4zM57.4 31.4c-7 5.2-17.1 8-25.8 8-12.2 0-23.2-4.5-31.5-12-.7-.6-.1-1.4.7-1 8.9 5.2 19.9 8.3 31.3 8.3 7.7 0 16.2-1.6 24-4.9 1.2-.5 2.1.8 1.3 1.6zm2.6-3.5c-.9-1.1-5.9-.5-8.2-.3-.7.1-.8-.5-.1-1 4-2.8 10.6-2 11.4-1.1.8 1-.2 7.7-3.9 10.9-.6.5-1.1.2-.8-.4.8-1.9 2.5-6.1 1.6-7.1z"/></svg>
+            AWS Select Tier Partner
+          </span>
+          <span class="partner-pill">
+            <svg class="check" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><path d="M3 8 L7 12 L13 4"/></svg>
+            Solutions Architects · Certified
+          </span>
+          <span class="partner-pill">
+            <svg class="check" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><path d="M3 8 L7 12 L13 4"/></svg>
+            HIPAA-aware delivery
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-viz reveal">
+      <div class="viz-card">
+        <div class="viz-header">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+          <span class="title">aws-platform · production</span>
+          <span class="live">streaming</span>
+        </div>
+        <div class="viz-body">
+          <svg class="arch-svg" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
+            <!-- Edge / Users -->
+            <g>
+              <rect x="180" y="20" width="100" height="44" rx="10" class="node-rect"/>
+              <text x="230" y="44" text-anchor="middle" class="node-label" fill="#E6EAF2">Edge Users</text>
+              <text x="230" y="56" text-anchor="middle" class="node-label">CloudFront · Route 53</text>
+            </g>
+
+            <!-- AWS WAF -->
+            <g>
+              <rect x="190" y="92" width="80" height="36" rx="9" class="node-rect aws"/>
+              <text x="230" y="115" text-anchor="middle" class="node-label" fill="#FF9900">AWS WAF</text>
+            </g>
+
+            <!-- App layer: 3 boxes -->
+            <g>
+              <rect x="40" y="160" width="110" height="46" rx="10" class="node-rect cyan"/>
+              <text x="95" y="184" text-anchor="middle" class="node-label" fill="#4DD0FF">API Gateway</text>
+              <text x="95" y="196" text-anchor="middle" class="node-label">+ Lambda</text>
+
+              <rect x="175" y="160" width="110" height="46" rx="10" class="node-rect aws"/>
+              <text x="230" y="184" text-anchor="middle" class="node-label" fill="#FF9900">ECS Fargate</text>
+              <text x="230" y="196" text-anchor="middle" class="node-label">Apps · Workers</text>
+
+              <rect x="310" y="160" width="110" height="46" rx="10" class="node-rect violet"/>
+              <text x="365" y="184" text-anchor="middle" class="node-label" fill="#A78BFA">EventBridge</text>
+              <text x="365" y="196" text-anchor="middle" class="node-label">Step Functions</text>
+            </g>
+
+            <!-- Data layer -->
+            <g>
+              <rect x="40" y="240" width="110" height="46" rx="10" class="node-rect"/>
+              <text x="95" y="263" text-anchor="middle" class="node-label" fill="#E6EAF2">RDS · Aurora</text>
+              <text x="95" y="275" text-anchor="middle" class="node-label">PostgreSQL · MySQL</text>
+
+              <rect x="175" y="240" width="110" height="46" rx="10" class="node-rect"/>
+              <text x="230" y="263" text-anchor="middle" class="node-label" fill="#E6EAF2">S3 Data Lake</text>
+              <text x="230" y="275" text-anchor="middle" class="node-label">Bronze · Silver · Gold</text>
+
+              <rect x="310" y="240" width="110" height="46" rx="10" class="node-rect"/>
+              <text x="365" y="263" text-anchor="middle" class="node-label" fill="#E6EAF2">DynamoDB</text>
+              <text x="365" y="275" text-anchor="middle" class="node-label">Streams · TTL</text>
+            </g>
+
+            <!-- Analytics -->
+            <g>
+              <rect x="40" y="320" width="170" height="46" rx="10" class="node-rect cyan"/>
+              <text x="125" y="343" text-anchor="middle" class="node-label" fill="#4DD0FF">Glue · Athena · Redshift</text>
+              <text x="125" y="355" text-anchor="middle" class="node-label">ETL · SQL · MPP warehouse</text>
+
+              <rect x="250" y="320" width="170" height="46" rx="10" class="node-rect violet"/>
+              <text x="335" y="343" text-anchor="middle" class="node-label" fill="#A78BFA">QuickSight · BI</text>
+              <text x="335" y="355" text-anchor="middle" class="node-label">Real-time dashboards</text>
+            </g>
+
+            <!-- Observability + Security  -->
+            <g>
+              <rect x="100" y="400" width="120" height="40" rx="10" class="node-rect"/>
+              <text x="160" y="425" text-anchor="middle" class="node-label" fill="#E6EAF2">CloudWatch · X-Ray</text>
+
+              <rect x="240" y="400" width="120" height="40" rx="10" class="node-rect"/>
+              <text x="300" y="425" text-anchor="middle" class="node-label" fill="#E6EAF2">IAM · KMS · GuardDuty</text>
+            </g>
+
+            <!-- Flow lines -->
+            <path class="flow-line cyan" d="M230,64 L230,92"/>
+            <path class="flow-line cyan" d="M230,128 L95,160"/>
+            <path class="flow-line cyan" d="M230,128 L230,160"/>
+            <path class="flow-line cyan" d="M230,128 L365,160"/>
+            <path class="flow-line amber" d="M95,206 L95,240"/>
+            <path class="flow-line amber" d="M230,206 L230,240"/>
+            <path class="flow-line amber" d="M365,206 L365,240"/>
+            <path class="flow-line violet" d="M95,286 L125,320"/>
+            <path class="flow-line violet" d="M230,286 L210,320"/>
+            <path class="flow-line violet" d="M230,286 L260,320"/>
+            <path class="flow-line violet" d="M365,286 L335,320"/>
+            <path class="flow-line cyan" d="M125,366 L160,400"/>
+            <path class="flow-line cyan" d="M335,366 L300,400"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="metric-chip chip-1">
+        <span class="ic cyan">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+        </span>
+        <span>
+          <span class="v">99.99%</span>
+          <span class="l">SLO uptime</span>
+        </span>
+      </div>
+      <div class="metric-chip chip-2">
+        <span class="ic amber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span>
+          <span class="v">112 TB</span>
+          <span class="l">data under mgmt</span>
+        </span>
+      </div>
+      <div class="metric-chip chip-3">
+        <span class="ic green">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <span>
+          <span class="v">SOC 2 ready</span>
+          <span class="l">controls in flight</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== STAT BAR ============================== -->
+<div class="stat-bar">
+  <div class="container stats reveal-stagger">
+    <div class="stat">
+      <div class="v" data-count="14"><span class="num">0</span><span class="suf">+</span></div>
+      <div class="l">Years in business</div>
+    </div>
+    <div class="stat">
+      <div class="v" data-count="120"><span class="num">0</span><span class="suf">+</span></div>
+      <div class="l">Production launches</div>
+    </div>
+    <div class="stat">
+      <div class="v" data-count="35"><span class="num">0</span><span class="suf">+</span></div>
+      <div class="l">Certified engineers</div>
+    </div>
+    <div class="stat">
+      <div class="v" data-count="99" data-suffix=".99%"><span class="num">0</span><span class="suf">.99%</span></div>
+      <div class="l">Avg platform SLO</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== LOGO MARQUEE ============================== -->
+<div class="container" style="padding-top: 70px;">
+  <div class="cert-label">Engineering for ambitious operators across</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Healthcare Systems</span>
+      <span class="marquee-item">Specialty Manufacturing</span>
+      <span class="marquee-item">Multi-site Retail</span>
+      <span class="marquee-item">Logistics & Supply Chain</span>
+      <span class="marquee-item">Regional Banks</span>
+      <span class="marquee-item">Higher Education</span>
+      <span class="marquee-item">Healthcare Systems</span>
+      <span class="marquee-item">Specialty Manufacturing</span>
+      <span class="marquee-item">Multi-site Retail</span>
+      <span class="marquee-item">Logistics & Supply Chain</span>
+      <span class="marquee-item">Regional Banks</span>
+      <span class="marquee-item">Higher Education</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== SERVICES ============================== -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> What we do</span>
+      <h2 class="display">Six practices, <span class="accent">one delivery team.</span></h2>
+      <p>We operate as a single embedded engineering bench. Whether you need a single architect, a build-and-run squad, or a multi-year platform program, we staff it with the same certified engineers who already shipped it for someone else.</p>
+    </div>
+
+    <div class="bento reveal-stagger">
+      <div class="card span-3 tall card-feature" style="--card-glow: rgba(33,150,243,0.18);">
+        <span class="ribbon">Flagship</span>
+        <div class="ic" style="--card-bg: rgba(33,150,243,0.15); --card-fg: var(--cyan); --card-border: rgba(33,150,243,0.30);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-.9-8.9 6 6 0 0 0-11.8 1.5A4 4 0 0 0 5.5 19h12z"/><path d="M12 13v6m0 0l-3-3m3 3l3-3"/></svg>
+        </div>
+        <h3>Cloud Migration & AWS Adoption</h3>
+        <p>Lift-and-shift is the easy part. We architect the network, identity, observability, and cost model that makes the migration stick. Landing zones, IaC, blue/green cutover plans, and the runbooks your team will actually use at 2 a.m.</p>
+        <div class="meta">
+          <span class="tag">AWS Landing Zone</span>
+          <span class="tag">Terraform · CDK</span>
+          <span class="tag">Network · IAM</span>
+          <span class="tag">Cost optimization</span>
+          <span class="tag">FinOps reporting</span>
+        </div>
+      </div>
+
+      <div class="card span-3 tall" style="--card-glow: rgba(139,92,246,0.18);">
+        <div class="ic" style="--card-bg: rgba(139,92,246,0.15); --card-fg: #A78BFA; --card-border: rgba(139,92,246,0.30);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6"/></svg>
+        </div>
+        <h3>Data Analytics, BI & EDI</h3>
+        <p>Ingest, clean, model, surface. We build the bronze/silver/gold lakehouse, the warehouse, the EDI pipelines into trading partners, and the Quicksight or Power BI dashboards your operators check on Monday. Real-time when the business actually needs it.</p>
+        <div class="meta">
+          <span class="tag">Glue · Athena · Redshift</span>
+          <span class="tag">QuickSight · Power BI</span>
+          <span class="tag">EDI 850/810/856</span>
+          <span class="tag">dbt · Airflow</span>
+        </div>
+      </div>
+
+      <div class="card span-2" style="--card-glow: rgba(255,158,44,0.18);">
+        <div class="ic" style="--card-bg: rgba(255,158,44,0.15); --card-fg: var(--amber); --card-border: rgba(255,158,44,0.30);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Custom Application Development</h3>
+        <p>Legacy reengineering and greenfield builds. TypeScript, .NET, Python, Go, mobile. Built like product.</p>
+      </div>
+
+      <div class="card span-2" style="--card-glow: rgba(77,208,255,0.18);">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h3>Managed Services</h3>
+        <p>24×7 monitoring, change management, patching, and a tier-2 help desk that talks to your users like adults.</p>
+      </div>
+
+      <div class="card span-2" style="--card-glow: rgba(54,211,153,0.18);">
+        <div class="ic" style="--card-bg: rgba(54,211,153,0.15); --card-fg: var(--green); --card-border: rgba(54,211,153,0.30);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+        </div>
+        <h3>IT Strategy & Roadmapping</h3>
+        <p>System assessment, total-cost models, three-year plan, board-ready. Then we build it, not just present it.</p>
+      </div>
+
+      <div class="card span-3" style="--card-glow: rgba(139,92,246,0.18);">
+        <div class="ic" style="--card-bg: rgba(139,92,246,0.15); --card-fg: #A78BFA; --card-border: rgba(139,92,246,0.30);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Embedded Expertise & On-Demand Leadership</h3>
+        <p>Fractional CTO, principal engineer, staff architect. Drop one of ours into your team for a quarter — keep the hire, or hand it back when the gap closes. No bench tax.</p>
+      </div>
+
+      <div class="card span-3" style="--card-glow: rgba(33,150,243,0.18);">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Security & Compliance Engineering</h3>
+        <p>HIPAA, SOC 2, PCI. Threat modeling, IAM hardening, KMS-everywhere, audit logging that satisfies an actual auditor. Continuous controls, not annual theater.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== INDUSTRIES ============================== -->
+<section id="industries" class="industries">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Industries</span>
+      <h2 class="display">Deep benches in the verticals <span class="accent">we know cold.</span></h2>
+      <p>We don't take work outside lanes we can deliver in. Inside these three, we have the people, the patterns, and the war stories.</p>
+    </div>
+
+    <div class="ind-grid reveal-stagger">
+      <div class="ind-card">
+        <div class="hex">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 2-7 1.5 4h5.27"/></svg>
+        </div>
+        <h3>Healthcare</h3>
+        <p>HIPAA-scope workloads, HL7/FHIR pipelines, claims and EHR integrations, member portals. Buffalo's medical corridor is our backyard.</p>
+        <ul>
+          <li>Provider portals & patient apps</li>
+          <li>Claims, ERAs, 835/837 EDI</li>
+          <li>FHIR APIs & HL7v2 bridges</li>
+          <li>HIPAA-compliant AWS landing zones</li>
+        </ul>
+      </div>
+
+      <div class="ind-card violet">
+        <div class="hex">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/><path d="M9 11h.01M15 11h.01"/></svg>
+        </div>
+        <h3>Manufacturing</h3>
+        <p>MES integrations, OT/IT bridges, production telemetry, supplier EDI. Buffalo is built on this work and so are we.</p>
+        <ul>
+          <li>MES & ERP integration</li>
+          <li>Shop-floor telemetry to cloud</li>
+          <li>EDI 850/810/856 with trading partners</li>
+          <li>Predictive-maintenance dashboards</li>
+        </ul>
+      </div>
+
+      <div class="ind-card amber">
+        <div class="hex">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3>Retail & Commerce</h3>
+        <p>Unified POS, inventory, and ecom data. Marketing attribution that holds up. Loyalty programs that actually compound.</p>
+        <ul>
+          <li>POS + ecom data unification</li>
+          <li>Customer 360 & loyalty</li>
+          <li>Demand forecasting</li>
+          <li>Headless commerce stacks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ARCHITECTURE / PLATFORM ============================== -->
+<section id="platform" class="architecture">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The reference platform</span>
+      <h2 class="display">An AWS-native blueprint <span class="accent">we ship in weeks, not quarters.</span></h2>
+      <p>Every engagement starts from a versioned reference architecture we've already hardened in production. You inherit the platform on day one; we customize from there.</p>
+    </div>
+
+    <div class="arch-grid">
+      <div class="arch-copy reveal">
+        <h2 class="display">From raw event to executive dashboard, fully governed.</h2>
+        <p>We don't hand you a tarball of YAML. The platform comes with provisioning, identity, observability, cost guardrails, and CI/CD wired together. Your team gets the keys.</p>
+
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <span class="num">01</span>
+            <div>
+              <div class="lbl">Ingest</div>
+              <div class="desc">Kinesis Firehose, MSK, AppFlow, EDI VAN — every source lands in S3 as immutable raw events.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="num">02</span>
+            <div>
+              <div class="lbl">Curate</div>
+              <div class="desc">Glue + dbt build silver/gold tables. Lineage and data contracts enforced in CI.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="num">03</span>
+            <div>
+              <div class="lbl">Serve</div>
+              <div class="desc">Redshift for warehouse SQL, Athena for ad-hoc, OpenSearch for log analytics, Aurora for apps.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="num">04</span>
+            <div>
+              <div class="lbl">Activate</div>
+              <div class="desc">QuickSight, embedded BI, reverse-ETL into Salesforce / HubSpot / your ops tool.</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn btn-primary">Get the architecture brief <span class="arrow">→</span></a>
+      </div>
+
+      <div class="arch-diagram reveal">
+        <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#4DD0FF"/>
+              <stop offset="1" stop-color="#8B5CF6"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#FF9E2C"/>
+              <stop offset="1" stop-color="#F97316"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="2.5"/></filter>
+          </defs>
+
+          <!-- Column titles -->
+          <text x="80" y="22" text-anchor="middle" class="node-label" fill="#4DD0FF" font-weight="700">INGEST</text>
+          <text x="210" y="22" text-anchor="middle" class="node-label" fill="#FF9E2C" font-weight="700">CURATE</text>
+          <text x="340" y="22" text-anchor="middle" class="node-label" fill="#A78BFA" font-weight="700">SERVE</text>
+          <text x="470" y="22" text-anchor="middle" class="node-label" fill="#36D399" font-weight="700">ACTIVATE</text>
+
+          <!-- INGEST column -->
+          <g>
+            <rect x="20" y="40" width="120" height="46" rx="10" class="node-rect cyan"/>
+            <text x="80" y="62" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">Kinesis Firehose</text>
+            <text x="80" y="76" text-anchor="middle" class="node-label">streaming events</text>
+
+            <rect x="20" y="100" width="120" height="46" rx="10" class="node-rect cyan"/>
+            <text x="80" y="122" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">MSK · Kafka</text>
+            <text x="80" y="136" text-anchor="middle" class="node-label">internal topics</text>
+
+            <rect x="20" y="160" width="120" height="46" rx="10" class="node-rect cyan"/>
+            <text x="80" y="182" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">AppFlow · EDI</text>
+            <text x="80" y="196" text-anchor="middle" class="node-label">SaaS + trading partners</text>
+
+            <rect x="20" y="220" width="120" height="46" rx="10" class="node-rect cyan"/>
+            <text x="80" y="242" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">DMS · Aurora CDC</text>
+            <text x="80" y="256" text-anchor="middle" class="node-label">change capture</text>
+          </g>
+
+          <!-- CURATE column -->
+          <g>
+            <rect x="150" y="40" width="120" height="46" rx="10" class="node-rect aws"/>
+            <text x="210" y="62" text-anchor="middle" class="node-label" fill="#FF9E2C" font-weight="700">S3 Raw</text>
+            <text x="210" y="76" text-anchor="middle" class="node-label">immutable bronze</text>
+
+            <rect x="150" y="100" width="120" height="46" rx="10" class="node-rect aws"/>
+            <text x="210" y="122" text-anchor="middle" class="node-label" fill="#FF9E2C" font-weight="700">Glue + dbt</text>
+            <text x="210" y="136" text-anchor="middle" class="node-label">silver tables</text>
+
+            <rect x="150" y="160" width="120" height="46" rx="10" class="node-rect aws"/>
+            <text x="210" y="182" text-anchor="middle" class="node-label" fill="#FF9E2C" font-weight="700">S3 Gold</text>
+            <text x="210" y="196" text-anchor="middle" class="node-label">modeled marts</text>
+
+            <rect x="150" y="220" width="120" height="46" rx="10" class="node-rect aws"/>
+            <text x="210" y="242" text-anchor="middle" class="node-label" fill="#FF9E2C" font-weight="700">Lake Formation</text>
+            <text x="210" y="256" text-anchor="middle" class="node-label">governed access</text>
+          </g>
+
+          <!-- SERVE column -->
+          <g>
+            <rect x="280" y="40" width="120" height="46" rx="10" class="node-rect violet"/>
+            <text x="340" y="62" text-anchor="middle" class="node-label" fill="#A78BFA" font-weight="700">Redshift</text>
+            <text x="340" y="76" text-anchor="middle" class="node-label">MPP warehouse</text>
+
+            <rect x="280" y="100" width="120" height="46" rx="10" class="node-rect violet"/>
+            <text x="340" y="122" text-anchor="middle" class="node-label" fill="#A78BFA" font-weight="700">Athena</text>
+            <text x="340" y="136" text-anchor="middle" class="node-label">ad-hoc SQL</text>
+
+            <rect x="280" y="160" width="120" height="46" rx="10" class="node-rect violet"/>
+            <text x="340" y="182" text-anchor="middle" class="node-label" fill="#A78BFA" font-weight="700">Aurora · DynamoDB</text>
+            <text x="340" y="196" text-anchor="middle" class="node-label">app data</text>
+
+            <rect x="280" y="220" width="120" height="46" rx="10" class="node-rect violet"/>
+            <text x="340" y="242" text-anchor="middle" class="node-label" fill="#A78BFA" font-weight="700">OpenSearch</text>
+            <text x="340" y="256" text-anchor="middle" class="node-label">log analytics</text>
+          </g>
+
+          <!-- ACTIVATE column -->
+          <g>
+            <rect x="410" y="40" width="100" height="46" rx="10" class="node-rect" style="fill: rgba(54,211,153,0.08); stroke: rgba(54,211,153,0.35);"/>
+            <text x="460" y="62" text-anchor="middle" class="node-label" fill="#36D399" font-weight="700">QuickSight</text>
+            <text x="460" y="76" text-anchor="middle" class="node-label">exec dashboards</text>
+
+            <rect x="410" y="100" width="100" height="46" rx="10" class="node-rect" style="fill: rgba(54,211,153,0.08); stroke: rgba(54,211,153,0.35);"/>
+            <text x="460" y="122" text-anchor="middle" class="node-label" fill="#36D399" font-weight="700">Embedded BI</text>
+            <text x="460" y="136" text-anchor="middle" class="node-label">in your app</text>
+
+            <rect x="410" y="160" width="100" height="46" rx="10" class="node-rect" style="fill: rgba(54,211,153,0.08); stroke: rgba(54,211,153,0.35);"/>
+            <text x="460" y="182" text-anchor="middle" class="node-label" fill="#36D399" font-weight="700">Reverse ETL</text>
+            <text x="460" y="196" text-anchor="middle" class="node-label">to ops tools</text>
+
+            <rect x="410" y="220" width="100" height="46" rx="10" class="node-rect" style="fill: rgba(54,211,153,0.08); stroke: rgba(54,211,153,0.35);"/>
+            <text x="460" y="242" text-anchor="middle" class="node-label" fill="#36D399" font-weight="700">SageMaker</text>
+            <text x="460" y="256" text-anchor="middle" class="node-label">forecast · ML</text>
+          </g>
+
+          <!-- Cross-cutting bottom -->
+          <g>
+            <rect x="20" y="300" width="250" height="40" rx="10" class="node-rect"/>
+            <text x="145" y="324" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">Observability · CloudWatch · X-Ray · Datadog</text>
+
+            <rect x="280" y="300" width="230" height="40" rx="10" class="node-rect"/>
+            <text x="395" y="324" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">Security · IAM · KMS · GuardDuty · Macie</text>
+
+            <rect x="20" y="350" width="490" height="40" rx="10" class="node-rect"/>
+            <text x="265" y="374" text-anchor="middle" class="node-label" fill="#E6EAF2" font-weight="700">Foundation · Control Tower · Terraform/CDK · CI/CD · FinOps</text>
+          </g>
+
+          <!-- Cross-column flow lines -->
+          <path class="flow-line cyan" d="M140,63 L150,63"/>
+          <path class="flow-line cyan" d="M140,123 L150,123"/>
+          <path class="flow-line cyan" d="M140,183 L150,183"/>
+          <path class="flow-line cyan" d="M140,243 L150,243"/>
+
+          <path class="flow-line amber" d="M270,63 L280,63"/>
+          <path class="flow-line amber" d="M270,123 L280,123"/>
+          <path class="flow-line amber" d="M270,183 L280,183"/>
+          <path class="flow-line amber" d="M270,243 L280,243"/>
+
+          <path class="flow-line violet" d="M400,63 L410,63"/>
+          <path class="flow-line violet" d="M400,123 L410,123"/>
+          <path class="flow-line violet" d="M400,183 L410,183"/>
+          <path class="flow-line violet" d="M400,243 L410,243"/>
+
+          <!-- Bottom labels -->
+          <text x="265" y="420" text-anchor="middle" class="node-label" font-size="11" fill="#6C7791">Every component is IaC-versioned · auditable · cost-tagged</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PROCESS ============================== -->
+<section id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> How we work</span>
+      <h2 class="display">A delivery model built for <span class="accent">operators, not pitch decks.</span></h2>
+      <p>You get senior engineers from day one, weekly demos against real production data, and a fixed-price discovery before any open-ended commitment.</p>
+    </div>
+
+    <div class="process-grid reveal-stagger">
+      <div class="step-card">
+        <h4>Discovery</h4>
+        <p>Two weeks, fixed price. We walk the systems, interview the operators, and ship a written architecture brief and execution plan.</p>
+      </div>
+      <div class="step-card">
+        <h4>Pilot</h4>
+        <p>One small, high-leverage workload to prove the pattern. End-to-end. Real data, real users, real metrics.</p>
+      </div>
+      <div class="step-card">
+        <h4>Scale</h4>
+        <p>Roll the proven pattern across the estate with a versioned reference platform. Weekly demos, IaC reviews, FinOps as you go.</p>
+      </div>
+      <div class="step-card">
+        <h4>Operate</h4>
+        <p>Hand over to your team with the runbooks, the dashboards, and an on-call shadow. We stay as deeply as you want, or step out clean.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CERTS ============================== -->
+<section class="certs">
+  <div class="container">
+    <div class="cert-label">Credentials · Certifications · Partnerships</div>
+    <div class="cert-grid reveal-stagger">
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--aws)" stroke-width="2.2" stroke-linecap="round"><path d="M3 15s2-1 5-1 6 2 9 2 4-1 4-1"/><path d="M3 10s2-1 5-1 6 2 9 2 4-1 4-1"/></svg> AWS Select Tier Partner</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg> Solutions Architect Pro</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20"/></svg> Microsoft Azure</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2 L2 7 L12 12 L22 7Z"/><path d="M2 17 L12 22 L22 17"/></svg> PMP · Six Sigma</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg> Certified Scrum Master</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg> HubSpot Solutions</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg> Asana Certified Pro</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2 L2 22 L22 22 Z"/><path d="M12 8v8"/></svg> Databricks Partner</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2C7 7 7 12 12 22C17 12 17 7 12 2Z"/></svg> Snowflake Ready</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg> Terraform Associate</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M4 4l16 16M20 4L4 20"/></svg> Kubernetes CKA</div>
+      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg> HIPAA · SOC 2 advisory</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CTA ============================== -->
+<section id="contact" class="cta">
+  <div class="container">
+    <div class="cta-card reveal">
+      <div class="inner">
+        <span class="eyebrow"><span class="dot"></span> Let's build</span>
+        <h2 class="display">Have a workload that should be in production <span class="accent">six weeks from now?</span></h2>
+        <p>Tell us what's broken or what's blocking. We'll come back inside two business days with a fixed-price discovery scope and the team we'd put on it.</p>
+        <div class="cta-actions">
+          <a href="mailto:connect@emergencetek.com?subject=New project inquiry" class="btn btn-primary">connect@emergencetek.com <span class="arrow">→</span></a>
+          <a href="tel:+17164064544" class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
+            (716) 406-4544
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer id="about">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="font-size: 18px;">
+          <span class="logo-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 14 L12 4 L20 14 M8 14 L8 20 L16 20 L16 14" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="11" r="1.6" fill="white"/>
+            </svg>
+          </span>
+          <span class="brand-name">
+            <b>EmergenceTek</b>
+            <span>Group</span>
+          </span>
+        </div>
+        <p>Cloud, data, and software engineering for healthcare, manufacturing, and retail. Based in Buffalo, NY. AWS Select Tier Partner.</p>
+      </div>
+
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Cloud migration</a></li>
+          <li><a href="#services">Data & BI</a></li>
+          <li><a href="#services">App development</a></li>
+          <li><a href="#services">Managed services</a></li>
+          <li><a href="#services">IT strategy</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Careers</a></li>
+          <li><a href="#contact">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li class="contact-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            300 International Drive, Suite 100<br/>Buffalo, NY 14221
+          </li>
+          <li class="contact-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
+            <a href="tel:+17164064544">(716) 406-4544</a>
+          </li>
+          <li class="contact-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="mailto:connect@emergencetek.com">connect@emergencetek.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© <span id="yr">2026</span> EmergenceTek Group. All rights reserved.</div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        </a>
+        <a href="https://twitter.com/" aria-label="Twitter" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.02 2.89-.02 3.29 0 .32.22.7.83.58A12.01 12.01 0 0024 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Intersection reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+  // Animated counters
+  const countIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.count);
+      const numEl = el.querySelector('.num');
+      const start = performance.now();
+      const duration = 1400;
+      const tick = (t) => {
+        const p = Math.min(1, (t - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = Math.round(target * eased).toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
+        else numEl.textContent = target.toLocaleString();
+      };
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+</script>
+
+</body>
+</html>
