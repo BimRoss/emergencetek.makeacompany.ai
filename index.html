@@ -304,6 +304,44 @@
     line-height: 1;
   }
 
+  /* ===================== TRUST STRIP ===================== */
+  .trust-strip {
+    margin-top: 64px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .strip-label {
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--text-dim); font-weight: 700;
+  }
+  .strip-row {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .trust-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    font-size: 13.5px; font-weight: 600;
+    color: var(--text-mute);
+    line-height: 1.2;
+    transition: border-color .2s, background .2s, color .2s, transform .2s;
+  }
+  .trust-pill:hover { transform: translateY(-1px); color: var(--text); border-color: rgba(255,255,255,0.2); }
+  .trust-pill.aws { color: var(--aws); border-color: rgba(255,153,0,0.35); background: rgba(255,153,0,0.06); }
+  .trust-pill.hipaa { border-color: rgba(54,211,153,0.30); }
+  .trust-pill.solutions { border-color: rgba(255,153,0,0.20); }
+  .trust-pill.soc { border-color: rgba(77,208,255,0.25); }
+  .trust-pill.k8s { border-color: rgba(50,108,229,0.30); }
+  @media (max-width: 640px) {
+    .trust-strip { margin-top: 36px; padding-top: 28px; }
+    .trust-pill { font-size: 12px; padding: 8px 12px; }
+  }
+
   /* ===================== HERO CARD (architecture viz) ===================== */
   .hero-viz {
     position: relative;
@@ -644,6 +682,7 @@
   }
   .pipeline-step .lbl { font-weight: 600; font-size: 15px; }
   .pipeline-step .desc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+  .brief-note { margin: 14px 0 0; font-size: 13px; color: var(--text-dim); }
 
   .arch-diagram {
     position: relative;
@@ -692,28 +731,33 @@
   }
   .cert-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
   @media (max-width: 980px) { .cert-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 540px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
   .cert-pill {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 18px 14px;
-    border-radius: 14px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    padding: 22px 16px;
+    border-radius: 16px;
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--line);
     color: var(--text-mute);
     font-weight: 600;
-    font-size: 13.5px;
-    transition: border-color .2s, color .2s, background .2s;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.3;
+    transition: border-color .2s, color .2s, background .2s, transform .2s;
+    min-height: 116px;
   }
   .cert-pill:hover {
     border-color: rgba(77,208,255,0.3);
     color: var(--text);
     background: rgba(77,208,255,0.04);
+    transform: translateY(-2px);
   }
-  .cert-pill svg { flex-shrink: 0; }
+  .cert-pill .logo { width: 44px; height: 44px; display: grid; place-items: center; flex-shrink: 0; }
+  .cert-pill .logo svg { width: 100%; height: 100%; }
 
   /* ===================== PROCESS / TIMELINE ===================== */
   .process-grid {
@@ -776,31 +820,28 @@
     border-color: rgba(77,208,255,0.30);
     background: linear-gradient(180deg, rgba(77,208,255,0.04), rgba(255,255,255,0.01));
   }
-  .team-card .avatar {
-    width: 88px; height: 88px;
-    border-radius: 24px;
-    display: grid; place-items: center;
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    letter-spacing: -0.01em;
-    color: white;
+  .team-card .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
     margin-bottom: 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
-    position: relative;
     overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(33,150,243,0.12), rgba(139,92,246,0.12));
+    box-shadow: 0 18px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
   }
-  .team-card .avatar::after {
+  .team-card .photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+  }
+  .team-card:hover .photo img { transform: scale(1.03); }
+  .team-card .photo::after {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(60% 60% at 30% 20%, rgba(255,255,255,0.22), transparent 70%);
+    background: linear-gradient(180deg, transparent 55%, rgba(5,7,13,0.55) 100%);
+    pointer-events: none;
   }
-  .team-card .avatar span { position: relative; z-index: 1; }
-  .avatar.g-1 { background: linear-gradient(135deg, #2196F3, #6D28D9); }
-  .avatar.g-2 { background: linear-gradient(135deg, #4DD0FF, #2196F3); }
-  .avatar.g-3 { background: linear-gradient(135deg, #8B5CF6, #EC4899); }
-  .avatar.g-4 { background: linear-gradient(135deg, #FF9E2C, #F97316); }
-  .avatar.g-5 { background: linear-gradient(135deg, #36D399, #2196F3); }
-  .avatar.g-6 { background: linear-gradient(135deg, #6D28D9, #2196F3); }
   .team-card h4 { margin: 0 0 6px; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
   .team-card .role {
     font-size: 13px;
@@ -1102,23 +1143,6 @@
         <a href="#contact" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
         <a href="#platform" class="btn btn-ghost">See the platform</a>
       </div>
-      <div class="partner-row">
-        <span>Trusted by</span>
-        <div class="partner-badges">
-          <span class="partner-pill aws">
-            <span class="aws-tag">aws</span>
-            AWS Select Tier Partner
-          </span>
-          <span class="partner-pill">
-            <svg class="check" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><path d="M3 8 L7 12 L13 4"/></svg>
-            Solutions Architects · Certified
-          </span>
-          <span class="partner-pill">
-            <svg class="check" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><path d="M3 8 L7 12 L13 4"/></svg>
-            HIPAA-aware delivery
-          </span>
-        </div>
-      </div>
     </div>
 
     <div class="hero-viz reveal">
@@ -1238,6 +1262,54 @@
         <span>
           <span class="v">SOC 2 ready</span>
           <span class="l">controls in flight</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="trust-strip reveal">
+      <span class="strip-label">Trusted by ambitious operators</span>
+      <div class="strip-row">
+        <span class="trust-pill aws">
+          <span class="aws-tag">aws</span>
+          AWS Select Tier Partner
+        </span>
+        <span class="trust-pill solutions">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 7 L12 3 L21 7 L12 11 Z"/>
+            <path d="M3 17 L12 21 L21 17"/>
+            <path d="M3 12 L12 16 L21 12"/>
+          </svg>
+          AWS Solutions Architects
+        </span>
+        <span class="trust-pill hipaa">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#36D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2 L20 5 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V5 Z"/>
+            <path d="M9 12 L11 14 L15 10"/>
+          </svg>
+          HIPAA-aware delivery
+        </span>
+        <span class="trust-pill soc">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#4DD0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 V12 L15 14"/>
+          </svg>
+          SOC 2 advisory
+        </span>
+        <span class="trust-pill ms">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <rect x="2"  y="2"  width="9" height="9" fill="#F25022"/>
+            <rect x="13" y="2"  width="9" height="9" fill="#7FBA00"/>
+            <rect x="2"  y="13" width="9" height="9" fill="#00A4EF"/>
+            <rect x="13" y="13" width="9" height="9" fill="#FFB900"/>
+          </svg>
+          Microsoft Partner
+        </span>
+        <span class="trust-pill k8s">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#326CE5" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12,2 21,7 19,17 12,22 5,17 3,7"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Kubernetes CKA
         </span>
       </div>
     </div>
@@ -1470,7 +1542,8 @@
           </div>
         </div>
 
-        <a href="#contact" class="btn btn-primary">Get the architecture brief <span class="arrow">→</span></a>
+        <a href="mailto:connect@emergencetek.com?subject=Send%20me%20the%20EmergenceTek%20architecture%20brief&amp;body=Quick%20context%20on%20our%20stack%2C%20team%20size%2C%20and%20what%27s%20blocking%3A%0A%0A" class="btn btn-primary">Email me the brief <span class="arrow">→</span></a>
+        <p class="brief-note">Tailored to your stack and sent inside two business days. Reply triggers a 30-min architect call if you want to walk it.</p>
       </div>
 
       <div class="arch-diagram reveal">
@@ -1648,7 +1721,7 @@
 
     <div class="team-grid reveal-stagger">
       <div class="team-card">
-        <div class="avatar g-1"><span>BL</span></div>
+        <div class="photo"><img src="/img/team/brian-lehman.jpg" alt="Brian Lehman" loading="lazy" width="493" height="493" /></div>
         <h4>Brian Lehman</h4>
         <p class="role">President</p>
         <p>Sets the strategy and stays close to the work. Three decades across consulting, services, and inside-the-room conversations with operators in healthcare and manufacturing.</p>
@@ -1663,7 +1736,7 @@
       </div>
 
       <div class="team-card">
-        <div class="avatar g-2"><span>JS</span></div>
+        <div class="photo"><img src="/img/team/jeff-schneider.jpg" alt="Jeff Schneider" loading="lazy" width="493" height="493" /></div>
         <h4>Jeff Schneider</h4>
         <p class="role">Chief Executive Officer</p>
         <p>Runs the firm and the P&amp;L. Came up through enterprise delivery and brings the discipline that lets a senior bench scale without losing the standard of work.</p>
@@ -1678,7 +1751,7 @@
       </div>
 
       <div class="team-card">
-        <div class="avatar g-3"><span>GH</span></div>
+        <div class="photo"><img src="/img/team/garret-hussak.jpg" alt="Garret Hussak" loading="lazy" width="493" height="493" /></div>
         <h4>Garret Hussak</h4>
         <p class="role">Chief Information Officer</p>
         <p>Owns the operating platform and the FinOps story. Architecture decisions land on his desk, and the cost guardrails our clients inherit on day one are his blueprint.</p>
@@ -1693,7 +1766,7 @@
       </div>
 
       <div class="team-card">
-        <div class="avatar g-4"><span>SO</span></div>
+        <div class="photo"><img src="/img/team/steve-okeefe.jpg" alt="Steve O&#39;Keefe" loading="lazy" width="493" height="493" /></div>
         <h4>Steve O'Keefe</h4>
         <p class="role">Chief Technology Officer</p>
         <p>Owns the reference architecture and the engineering standard. Spends his weeks across discovery calls, IaC reviews, and the hard architectural decisions clients want in the room.</p>
@@ -1708,7 +1781,7 @@
       </div>
 
       <div class="team-card">
-        <div class="avatar g-5"><span>EM</span></div>
+        <div class="photo"><img src="/img/team/emily-mahaffy.jpg" alt="Emily Mahaffy" loading="lazy" width="493" height="493" /></div>
         <h4>Emily Mahaffy</h4>
         <p class="role">VP, Business Development</p>
         <p>First call on every new engagement. Translates the operator's mess into the right-sized scope, then hands the team to delivery without losing context in the seam.</p>
@@ -1723,7 +1796,7 @@
       </div>
 
       <div class="team-card">
-        <div class="avatar g-6"><span>PG</span></div>
+        <div class="photo"><img src="/img/team/patrick-garland.jpg" alt="Patrick Garland" loading="lazy" width="493" height="493" /></div>
         <h4>Patrick Garland</h4>
         <p class="role">Senior Advisor</p>
         <p>The voice in the room when the call is close. Three decades of seeing services firms grow, stall, and recover, and the pattern recognition that keeps us out of the wrong rooms.</p>
@@ -1745,18 +1818,169 @@
   <div class="container">
     <div class="cert-label">Credentials · Certifications · Partnerships</div>
     <div class="cert-grid reveal-stagger">
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--aws)" stroke-width="2.2" stroke-linecap="round"><path d="M3 15s2-1 5-1 6 2 9 2 4-1 4-1"/><path d="M3 10s2-1 5-1 6 2 9 2 4-1 4-1"/></svg> AWS Select Tier Partner</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg> Solutions Architect Pro</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20"/></svg> Microsoft Azure</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2 L2 7 L12 12 L22 7Z"/><path d="M2 17 L12 22 L22 17"/></svg> PMP · Six Sigma</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg> Certified Scrum Master</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg> HubSpot Solutions</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg> Asana Certified Pro</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2 L2 22 L22 22 Z"/><path d="M12 8v8"/></svg> Databricks Partner</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2C7 7 7 12 12 22C17 12 17 7 12 2Z"/></svg> Snowflake Ready</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg> Terraform Associate</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M4 4l16 16M20 4L4 20"/></svg> Kubernetes CKA</div>
-      <div class="cert-pill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg> HIPAA · SOC 2 advisory</div>
+      <!-- AWS -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg">
+            <text x="32" y="22" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="900" font-size="20" fill="#FF9900" letter-spacing="-0.5">aws</text>
+            <path d="M8 30 C 18 36, 46 36, 56 30" stroke="#FF9900" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M50 28 L56 30 L52 33" stroke="#FF9900" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        AWS Select Tier Partner
+      </div>
+
+      <!-- Microsoft Azure -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4"  y="4"  width="14" height="14" fill="#F25022"/>
+            <rect x="22" y="4"  width="14" height="14" fill="#7FBA00"/>
+            <rect x="4"  y="22" width="14" height="14" fill="#00A4EF"/>
+            <rect x="22" y="22" width="14" height="14" fill="#FFB900"/>
+          </svg>
+        </span>
+        Microsoft &amp; Azure
+      </div>
+
+      <!-- HIPAA -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4 L34 9 V21 C34 30 27 35 20 36 C13 35 6 30 6 21 V9 Z" fill="rgba(54,211,153,0.12)" stroke="#36D399" stroke-width="1.6"/>
+            <text x="20" y="24" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="10" fill="#36D399" letter-spacing="0.5">HIPAA</text>
+          </svg>
+        </span>
+        HIPAA-aware delivery
+      </div>
+
+      <!-- SOC 2 -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="16" fill="none" stroke="#4DD0FF" stroke-width="1.6"/>
+            <text x="20" y="18" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="8" fill="#4DD0FF" letter-spacing="0.5">AICPA</text>
+            <text x="20" y="29" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="9" fill="#4DD0FF" letter-spacing="0.5">SOC 2</text>
+          </svg>
+        </span>
+        SOC 2 advisory
+      </div>
+
+      <!-- Snowflake -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#29B5E8" stroke-width="2.4" stroke-linecap="round">
+              <line x1="20" y1="6"  x2="20" y2="34"/>
+              <line x1="8"  y1="13" x2="32" y2="27"/>
+              <line x1="8"  y1="27" x2="32" y2="13"/>
+              <line x1="20" y1="6"  x2="17" y2="9"/>
+              <line x1="20" y1="6"  x2="23" y2="9"/>
+              <line x1="20" y1="34" x2="17" y2="31"/>
+              <line x1="20" y1="34" x2="23" y2="31"/>
+            </g>
+            <circle cx="20" cy="20" r="3" fill="#29B5E8"/>
+          </svg>
+        </span>
+        Snowflake Partner
+      </div>
+
+      <!-- Databricks -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 13 L20 6 L34 13 L20 20 Z"  fill="#FF3621" opacity="0.9"/>
+            <path d="M6 22 L20 15 L34 22 L20 29 Z" fill="#FF3621" opacity="0.7"/>
+            <path d="M6 31 L20 24 L34 31 L20 38 Z" fill="#FF3621" opacity="0.5"/>
+          </svg>
+        </span>
+        Databricks Partner
+      </div>
+
+      <!-- Snowflake / Databricks done — Terraform -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#7B42BC">
+              <polygon points="6,12 14,16.5 14,25.5 6,21"/>
+              <polygon points="15,17 23,21.5 23,30.5 15,26"/>
+              <polygon points="24,12 32,16.5 32,25.5 24,21"/>
+              <polygon points="15,7 23,11.5 23,20.5 15,16"/>
+            </g>
+          </svg>
+        </span>
+        Terraform Associate
+      </div>
+
+      <!-- Kubernetes -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,4 34,12 31,28 20,36 9,28 6,12" fill="none" stroke="#326CE5" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="20" cy="20" r="5.5" fill="none" stroke="#326CE5" stroke-width="1.6"/>
+            <g stroke="#326CE5" stroke-width="1.6" stroke-linecap="round">
+              <line x1="20" y1="6"   x2="20" y2="14.5"/>
+              <line x1="33" y1="13"  x2="25" y2="17"/>
+              <line x1="30" y1="27"  x2="24" y2="23"/>
+              <line x1="11" y1="27"  x2="17" y2="23"/>
+              <line x1="8"  y1="13"  x2="15.5" y2="17.5"/>
+            </g>
+          </svg>
+        </span>
+        Kubernetes CKA
+      </div>
+
+      <!-- HubSpot -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="22" r="8" fill="none" stroke="#FF7A59" stroke-width="2.4"/>
+            <circle cx="26" cy="22" r="2.4" fill="#FF7A59"/>
+            <line x1="22" y1="15" x2="14" y2="11" stroke="#FF7A59" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="12" cy="10" r="2.6" fill="#FF7A59"/>
+          </svg>
+        </span>
+        HubSpot Solutions Partner
+      </div>
+
+      <!-- dbt -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <text x="20" y="26" text-anchor="middle" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="16" fill="#FF694A">dbt</text>
+            <path d="M6 12 L34 12" stroke="#FF694A" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M6 32 L34 32" stroke="#FF694A" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        dbt Labs Partner
+      </div>
+
+      <!-- PMP -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="14" fill="none" stroke="#D4A85B" stroke-width="1.6"/>
+            <circle cx="20" cy="20" r="10" fill="none" stroke="#D4A85B" stroke-width="1"/>
+            <text x="20" y="24" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="10" fill="#D4A85B">PMP</text>
+          </svg>
+        </span>
+        PMP · Scrum · Six Sigma
+      </div>
+
+      <!-- Solutions Architect -->
+      <div class="cert-pill">
+        <span class="logo">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4 L34 11 L34 26 L20 36 L6 26 L6 11 Z" fill="rgba(255,153,0,0.10)" stroke="#FF9900" stroke-width="1.6"/>
+            <path d="M14 22 L19 17 L24 22 L29 17" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14" cy="22" r="1.6" fill="#FF9900"/>
+            <circle cx="19" cy="17" r="1.6" fill="#FF9900"/>
+            <circle cx="24" cy="22" r="1.6" fill="#FF9900"/>
+            <circle cx="29" cy="17" r="1.6" fill="#FF9900"/>
+          </svg>
+        </span>
+        AWS Solutions Architect
+      </div>
     </div>
   </div>
 </section>
