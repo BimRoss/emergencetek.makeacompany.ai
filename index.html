@@ -610,18 +610,38 @@
     border: 1px solid var(--line-strong);
     overflow: hidden;
     transition: transform .25s, border-color .25s;
+    display: flex;
+    flex-direction: column;
   }
   .ind-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.25); }
+  .ind-card .photo {
+    margin: -36px -32px 26px;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+    background: var(--ink-3);
+  }
+  @media (max-width: 880px) { .ind-card .photo { margin: -26px -22px 22px; } }
+  .ind-card .photo img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform .6s ease; }
+  .ind-card:hover .photo img { transform: scale(1.06); }
+  .ind-card .photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(5,7,13,0.0) 30%, rgba(5,7,13,0.65) 80%, rgba(5,7,13,0.95) 100%);
+  }
   .ind-card .hex {
-    width: 60px; height: 60px;
-    border-radius: 16px;
-    margin-bottom: 26px;
+    position: absolute;
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    bottom: -22px; left: 20px;
     display: grid; place-items: center;
     background: var(--grad-2);
-    box-shadow: 0 12px 30px rgba(33,150,243,0.25);
+    box-shadow: 0 12px 30px rgba(33,150,243,0.35);
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.12);
   }
-  .ind-card.violet .hex { background: linear-gradient(135deg, #8B5CF6, #EC4899); box-shadow: 0 12px 30px rgba(139,92,246,0.25); }
-  .ind-card.amber .hex { background: linear-gradient(135deg, #FF9E2C, #F97316); box-shadow: 0 12px 30px rgba(255,158,44,0.25); }
+  .ind-card.violet .hex { background: linear-gradient(135deg, #8B5CF6, #EC4899); box-shadow: 0 12px 30px rgba(139,92,246,0.35); }
+  .ind-card.amber .hex { background: linear-gradient(135deg, #FF9E2C, #F97316); box-shadow: 0 12px 30px rgba(255,158,44,0.35); }
+  .ind-card h3 { margin-top: 18px; }
   .ind-card h3 { margin: 0 0 12px; font-size: 24px; }
   .ind-card p { color: var(--text-mute); font-size: 15px; margin: 0 0 22px; }
   .ind-card ul {
@@ -640,6 +660,44 @@
   }
   .ind-card.violet li::before { background: var(--violet); }
   .ind-card.amber li::before { background: var(--amber); }
+
+  /* ===================== INFRA BANNER ===================== */
+  .infra-banner {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(80px, 12vw, 160px) 0;
+    overflow: hidden;
+  }
+  .infra-img {
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url('/img/photo/banner-infra.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+  }
+  .infra-veil {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(5,7,13,0.55) 0%, rgba(5,7,13,0.75) 100%),
+      radial-gradient(60% 80% at 50% 100%, rgba(33,150,243,0.20), transparent 70%);
+  }
+  .infra-copy {
+    max-width: 760px;
+  }
+  .infra-copy h2 {
+    font-size: clamp(32px, 4.4vw, 56px);
+    margin: 20px 0 18px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .infra-copy h2 .accent {
+    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .infra-copy p {
+    color: var(--text);
+    font-size: 17px;
+    max-width: 580px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+  }
 
   /* ===================== ARCHITECTURE SHOWCASE ===================== */
   .architecture {
@@ -1490,8 +1548,9 @@
 
     <div class="ind-grid reveal-stagger">
       <div class="ind-card">
+        <div class="photo"><img src="/img/photo/industry-healthcare.jpg" alt="Healthcare workload" loading="lazy" /></div>
         <div class="hex">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 2-7 1.5 4h5.27"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 2-7 1.5 4h5.27"/></svg>
         </div>
         <h3>Healthcare</h3>
         <p>HIPAA-scope workloads, HL7/FHIR pipelines, claims and EHR integrations, member portals. Buffalo's medical corridor is our backyard.</p>
@@ -1504,8 +1563,9 @@
       </div>
 
       <div class="ind-card violet">
+        <div class="photo"><img src="/img/photo/industry-manufacturing.jpg" alt="Manufacturing workload" loading="lazy" /></div>
         <div class="hex">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/><path d="M9 11h.01M15 11h.01"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/><path d="M9 11h.01M15 11h.01"/></svg>
         </div>
         <h3>Manufacturing</h3>
         <p>MES integrations, OT/IT bridges, production telemetry, supplier EDI. Buffalo is built on this work and so are we.</p>
@@ -1518,8 +1578,9 @@
       </div>
 
       <div class="ind-card amber">
+        <div class="photo"><img src="/img/photo/industry-retail.jpg" alt="Retail workload" loading="lazy" /></div>
         <div class="hex">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         </div>
         <h3>Retail & Commerce</h3>
         <p>Unified POS, inventory, and ecom data. Marketing attribution that holds up. Loyalty programs that actually compound.</p>
@@ -1531,6 +1592,17 @@
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================== INFRA BANNER ============================== -->
+<section class="infra-banner" aria-hidden="true">
+  <div class="infra-img" role="img" aria-label="Server hall illuminated by cool LED indicators"></div>
+  <div class="infra-veil"></div>
+  <div class="container infra-copy reveal">
+    <span class="eyebrow"><span class="dot"></span> Production-grade by default</span>
+    <h2 class="display">The platform you see in pitch decks. <span class="accent">We actually run it.</span></h2>
+    <p>Every workload we ship lives inside the same reference platform — hardened landing zone, IaC for every resource, identity wired end to end, observability and FinOps in place from day one.</p>
   </div>
 </section>
 
