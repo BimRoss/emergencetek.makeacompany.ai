@@ -491,9 +491,9 @@
 
   /* ===================== SECTION WRAP ===================== */
   section { padding: 110px 0; position: relative; }
-  @media (max-width: 640px) { section { padding: 70px 0; } }
+  @media (max-width: 640px) { section { padding: 56px 0; } }
   .sec-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
-  @media (max-width: 640px) { .sec-head { margin-bottom: 40px; } }
+  @media (max-width: 640px) { .sec-head { margin-bottom: 32px; } }
   .sec-head h2 {
     font-size: clamp(32px, 4vw, 52px);
     margin: 18px 0 18px;
@@ -654,12 +654,13 @@
     gap: 60px;
     align-items: center;
   }
-  @media (max-width: 1000px) { .arch-grid { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 1000px) { .arch-grid { grid-template-columns: 1fr; gap: 36px; } }
+  @media (max-width: 640px) { .arch-grid { gap: 28px; } }
   .arch-copy h2 { font-size: clamp(28px, 3.4vw, 44px); margin: 18px 0 22px; }
-  .arch-copy p { color: var(--text-mute); font-size: 16.5px; margin-bottom: 30px; }
+  .arch-copy p { color: var(--text-mute); font-size: 16.5px; margin-bottom: 24px; }
   .pipeline {
-    display: flex; flex-direction: column; gap: 14px;
-    margin-bottom: 32px;
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 24px;
   }
   .pipeline-step {
     display: flex; align-items: center; gap: 16px;
@@ -878,22 +879,30 @@
     margin: 0 0 16px;
   }
   .team-card p { margin: 0; color: var(--text-mute); font-size: 14.5px; line-height: 1.65; }
-  .team-card .links {
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    display: flex; gap: 10px;
+  .team-card .li-link {
+    margin-top: auto;
+    padding-top: 22px;
+    display: inline-flex;
+    align-self: flex-start;
   }
-  .team-card .links a {
-    width: 34px; height: 34px;
-    border-radius: 9px;
-    display: grid; place-items: center;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--line);
-    color: var(--text-mute);
+  .team-card .li-link a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(10,102,194,0.10);
+    border: 1px solid rgba(10,102,194,0.35);
+    color: #4DA8FF;
+    font-size: 13px;
+    font-weight: 600;
     transition: all .15s;
   }
-  .team-card .links a:hover { color: var(--text); border-color: var(--cyan); background: rgba(77,208,255,0.08); }
+  .team-card .li-link a:hover {
+    background: rgba(10,102,194,0.18);
+    border-color: rgba(10,102,194,0.55);
+    color: #7FC3FF;
+    transform: translateY(-1px);
+  }
+  .team-card .li-link svg { flex-shrink: 0; }
 
   /* ===================== MOBILE NAV PANEL ===================== */
   .nav-mobile {
@@ -1793,12 +1802,10 @@
         <h4>Brian Lehman</h4>
         <p class="role">President</p>
         <p>Sets the strategy and stays close to the work. Three decades across consulting, services, and inside-the-room conversations with operators in healthcare and manufacturing.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Brian">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/brianlehman/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -1808,12 +1815,10 @@
         <h4>Jeff Schneider</h4>
         <p class="role">Chief Executive Officer</p>
         <p>Runs the firm and the P&amp;L. Came up through enterprise delivery and brings the discipline that lets a senior bench scale without losing the standard of work.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Jeff">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/jeffschneider11/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -1823,12 +1828,10 @@
         <h4>Garret Hussak</h4>
         <p class="role">Chief Information Officer</p>
         <p>Owns the operating platform and the FinOps story. Architecture decisions land on his desk, and the cost guardrails our clients inherit on day one are his blueprint.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Garret">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/garret-hussak-3b79a710/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -1838,12 +1841,10 @@
         <h4>Steve O'Keefe</h4>
         <p class="role">Chief Technology Officer</p>
         <p>Owns the reference architecture and the engineering standard. Spends his weeks across discovery calls, IaC reviews, and the hard architectural decisions clients want in the room.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Steve">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/steve-o-keefe-79027a70/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -1853,12 +1854,10 @@
         <h4>Emily Mahaffy</h4>
         <p class="role">VP, Business Development</p>
         <p>First call on every new engagement. Translates the operator's mess into the right-sized scope, then hands the team to delivery without losing context in the seam.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Emily">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/emilymahaffy/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -1868,12 +1867,10 @@
         <h4>Patrick Garland</h4>
         <p class="role">Senior Advisor</p>
         <p>The voice in the room when the call is close. Three decades of seeing services firms grow, stall, and recover, and the pattern recognition that keeps us out of the wrong rooms.</p>
-        <div class="links">
-          <a href="mailto:connect@emergencetek.com" aria-label="Email Patrick">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+        <div class="li-link">
+          <a href="https://www.linkedin.com/in/patrick-garland-6778653/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            Connect on LinkedIn
           </a>
         </div>
       </div>
