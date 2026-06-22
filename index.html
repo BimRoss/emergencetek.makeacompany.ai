@@ -653,7 +653,21 @@
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(50% 50% at 50% 0%, rgba(77,208,255,0.10), transparent);
   }
-  .arch-diagram svg { width: 100%; height: auto; position: relative; }
+  .arch-diagram .scroll {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.18) transparent;
+  }
+  .arch-diagram .scroll::-webkit-scrollbar { height: 6px; }
+  .arch-diagram .scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 3px; }
+  .arch-diagram svg { width: 100%; height: auto; position: relative; display: block; min-width: 520px; }
+  @media (max-width: 760px) {
+    .arch-diagram { padding: 20px; }
+    .arch-diagram svg { min-width: 560px; }
+  }
 
   /* ===================== CERTS ===================== */
   .certs {
@@ -725,6 +739,132 @@
   }
   .step-card h4 { margin: 0 0 10px; font-size: 18px; font-weight: 700; }
   .step-card p { margin: 0; color: var(--text-mute); font-size: 14px; line-height: 1.6; }
+
+  /* ===================== LEADERSHIP ===================== */
+  .leadership {
+    background:
+      radial-gradient(50% 60% at 80% 20%, rgba(77,208,255,0.08), transparent 60%),
+      radial-gradient(40% 60% at 20% 80%, rgba(139,92,246,0.08), transparent 60%),
+      var(--ink-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 940px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .team-card {
+    position: relative;
+    padding: 32px 28px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid var(--line-strong);
+    text-align: left;
+    transition: transform .25s, border-color .25s, background .25s;
+    display: flex; flex-direction: column;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(77,208,255,0.30);
+    background: linear-gradient(180deg, rgba(77,208,255,0.04), rgba(255,255,255,0.01));
+  }
+  .team-card .avatar {
+    width: 88px; height: 88px;
+    border-radius: 24px;
+    display: grid; place-items: center;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    color: white;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card .avatar::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(60% 60% at 30% 20%, rgba(255,255,255,0.22), transparent 70%);
+  }
+  .team-card .avatar span { position: relative; z-index: 1; }
+  .avatar.g-1 { background: linear-gradient(135deg, #2196F3, #6D28D9); }
+  .avatar.g-2 { background: linear-gradient(135deg, #4DD0FF, #2196F3); }
+  .avatar.g-3 { background: linear-gradient(135deg, #8B5CF6, #EC4899); }
+  .avatar.g-4 { background: linear-gradient(135deg, #FF9E2C, #F97316); }
+  .avatar.g-5 { background: linear-gradient(135deg, #36D399, #2196F3); }
+  .avatar.g-6 { background: linear-gradient(135deg, #6D28D9, #2196F3); }
+  .team-card h4 { margin: 0 0 6px; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+  .team-card .role {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--cyan);
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+  .team-card p { margin: 0; color: var(--text-mute); font-size: 14.5px; line-height: 1.65; }
+  .team-card .links {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 10px;
+  }
+  .team-card .links a {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    color: var(--text-mute);
+    transition: all .15s;
+  }
+  .team-card .links a:hover { color: var(--text); border-color: var(--cyan); background: rgba(77,208,255,0.08); }
+
+  /* ===================== MOBILE NAV PANEL ===================== */
+  .nav-mobile {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 90;
+    background: rgba(5,7,13,0.96);
+    backdrop-filter: saturate(180%) blur(28px);
+    -webkit-backdrop-filter: saturate(180%) blur(28px);
+    padding: 96px 24px 40px;
+    display: flex; flex-direction: column;
+    opacity: 0; pointer-events: none;
+    transition: opacity .2s ease;
+  }
+  body.nav-open .nav-mobile { opacity: 1; pointer-events: auto; }
+  body.nav-open { overflow: hidden; }
+  .nav-mobile a {
+    display: block;
+    padding: 18px 4px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-mobile a:hover { color: var(--cyan); }
+  .nav-mobile .mobile-cta {
+    margin-top: 28px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .nav-mobile .mobile-cta a {
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid var(--line-strong);
+  }
+  .nav-mobile .mobile-cta a.primary {
+    background: var(--grad-2);
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(33,150,243,0.3);
+  }
+  .nav-toggle svg .x { display: none; }
+  body.nav-open .nav-toggle svg .bars { display: none; }
+  body.nav-open .nav-toggle svg .x { display: block; }
 
   /* ===================== CTA ===================== */
   .cta {
@@ -903,8 +1043,8 @@
       <a href="#services">Services</a>
       <a href="#industries">Industries</a>
       <a href="#platform">Platform</a>
+      <a href="#team">Leadership</a>
       <a href="#process">Process</a>
-      <a href="#about">About</a>
     </nav>
     <div class="nav-cta">
       <a href="tel:+17164064544" class="btn btn-ghost">
@@ -912,12 +1052,28 @@
         (716) 406-4544
       </a>
       <a href="#contact" class="btn btn-primary">Start a project <span class="arrow">→</span></a>
-      <button class="nav-toggle" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <g class="bars"><path d="M4 6h16M4 12h16M4 18h16"/></g>
+          <g class="x"><path d="M6 6l12 12M18 6L6 18"/></g>
+        </svg>
       </button>
     </div>
   </div>
 </header>
+
+<div class="nav-mobile" id="navMobile" aria-hidden="true">
+  <a href="#services">Services</a>
+  <a href="#industries">Industries</a>
+  <a href="#platform">Platform</a>
+  <a href="#team">Leadership</a>
+  <a href="#process">Process</a>
+  <a href="#about">About</a>
+  <div class="mobile-cta">
+    <a href="tel:+17164064544">(716) 406-4544</a>
+    <a class="primary" href="#contact">Start a project</a>
+  </div>
+</div>
 
 <!-- ============================== HERO ============================== -->
 <section class="hero">
@@ -1313,6 +1469,7 @@
       </div>
 
       <div class="arch-diagram reveal">
+        <div class="scroll">
         <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
@@ -1439,6 +1596,7 @@
           <!-- Bottom labels -->
           <text x="265" y="420" text-anchor="middle" class="node-label" font-size="11" fill="#6C7791">Every component is IaC-versioned · auditable · cost-tagged</text>
         </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -1469,6 +1627,109 @@
       <div class="step-card">
         <h4>Operate</h4>
         <p>Hand over to your team with the runbooks, the dashboards, and an on-call shadow. We stay as deeply as you want, or step out clean.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LEADERSHIP ============================== -->
+<section id="team" class="leadership">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Leadership</span>
+      <h2 class="display">Senior operators <span class="accent">leading every engagement.</span></h2>
+      <p>You buy the people. The team that scoped your work is the team in the standups, the same hands writing the IaC and the runbooks.</p>
+    </div>
+
+    <div class="team-grid reveal-stagger">
+      <div class="team-card">
+        <div class="avatar g-1"><span>BL</span></div>
+        <h4>Brian Lehman</h4>
+        <p class="role">President</p>
+        <p>Sets the strategy and stays close to the work. Three decades across consulting, services, and inside-the-room conversations with operators in healthcare and manufacturing.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Brian">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar g-2"><span>JS</span></div>
+        <h4>Jeff Schneider</h4>
+        <p class="role">Chief Executive Officer</p>
+        <p>Runs the firm and the P&amp;L. Came up through enterprise delivery and brings the discipline that lets a senior bench scale without losing the standard of work.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Jeff">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar g-3"><span>GH</span></div>
+        <h4>Garret Hussak</h4>
+        <p class="role">Chief Information Officer</p>
+        <p>Owns the operating platform and the FinOps story. Architecture decisions land on his desk, and the cost guardrails our clients inherit on day one are his blueprint.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Garret">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar g-4"><span>SO</span></div>
+        <h4>Steve O'Keefe</h4>
+        <p class="role">Chief Technology Officer</p>
+        <p>Owns the reference architecture and the engineering standard. Spends his weeks across discovery calls, IaC reviews, and the hard architectural decisions clients want in the room.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Steve">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar g-5"><span>EM</span></div>
+        <h4>Emily Mahaffy</h4>
+        <p class="role">VP, Business Development</p>
+        <p>First call on every new engagement. Translates the operator's mess into the right-sized scope, then hands the team to delivery without losing context in the seam.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Emily">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar g-6"><span>PG</span></div>
+        <h4>Patrick Garland</h4>
+        <p class="role">Senior Advisor</p>
+        <p>The voice in the room when the call is close. Three decades of seeing services firms grow, stall, and recover, and the pattern recognition that keeps us out of the wrong rooms.</p>
+        <div class="links">
+          <a href="mailto:connect@emergencetek.com" aria-label="Email Patrick">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zm-1.5-12.5C5.67 6.5 5 5.83 5 5s.67-1.5 1.5-1.5S8 4.17 8 5s-.67 1.5-1.5 1.5zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -1612,6 +1873,22 @@
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Mobile menu
+  const toggle = document.querySelector('.nav-toggle');
+  const mobile = document.getElementById('navMobile');
+  const setOpen = (open) => {
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobile.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+  toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('nav-open')));
+  mobile.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
 
   // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
