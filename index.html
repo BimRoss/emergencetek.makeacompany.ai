@@ -653,6 +653,16 @@
     color: transparent;
     line-height: 1.15;
   }
+  .stat-tagline {
+    text-align: center;
+    margin: 0 0 36px;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(15px, 1.6vw, 18px);
+    letter-spacing: 0.02em;
+    color: var(--text-mute);
+  }
+  @media (max-width: 640px) { .stat-tagline { margin-bottom: 28px; font-size: 14px; } }
   .stat .l {
     margin-top: 10px;
     font-size: 13px;
@@ -1722,6 +1732,9 @@
 
 <!-- ============================== STAT BAR ============================== -->
 <div class="stat-bar">
+  <div class="container">
+    <p class="stat-tagline reveal">Transforming businesses through technology since 2012 · Buffalo, NY</p>
+  </div>
   <div class="container stats stats-text reveal-stagger">
     <div class="stat">
       <div class="vt">Since 2012</div>
@@ -1729,7 +1742,7 @@
     </div>
     <div class="stat">
       <div class="vt">AWS Select Tier</div>
-      <div class="l">Partner</div>
+      <div class="l">Service Partners</div>
     </div>
     <div class="stat">
       <div class="vt">HIPAA &amp; SOC 2</div>
