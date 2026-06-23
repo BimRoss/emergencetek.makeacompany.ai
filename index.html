@@ -457,27 +457,29 @@
     margin-top: 64px;
     padding-top: 36px;
     border-top: 1px solid var(--line);
-    display: flex; flex-direction: column; gap: 18px;
+    display: flex; flex-direction: column; gap: 22px;
   }
   .strip-label {
     font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
     color: var(--text-dim); font-weight: 700;
   }
   .strip-row {
-    display: flex; flex-wrap: wrap; gap: 12px;
-    justify-content: flex-start;
+    display: flex; flex-wrap: wrap; gap: 14px 22px;
+    justify-content: space-between;
     align-items: center;
   }
+  @media (max-width: 760px) { .strip-row { justify-content: flex-start; gap: 10px 14px; } }
   .trust-pill {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 16px;
+    padding: 12px 20px;
     border-radius: 999px;
     background: rgba(255,255,255,0.04);
     border: 1px solid var(--line);
-    font-size: 13.5px; font-weight: 600;
+    font-size: 14px; font-weight: 600;
     color: var(--text-mute);
     line-height: 1.2;
     transition: border-color .2s, background .2s, color .2s, transform .2s;
+    flex: 0 1 auto;
   }
   .trust-pill:hover { transform: translateY(-1px); color: var(--text); border-color: rgba(255,255,255,0.2); }
   .trust-pill.aws { color: var(--aws); border-color: rgba(255,153,0,0.35); background: rgba(255,153,0,0.06); }
@@ -1731,8 +1733,8 @@
       <div class="l">Aware delivery</div>
     </div>
     <div class="stat">
-      <div class="vt">Healthcare<br/>Manufacturing<br/>Retail</div>
-      <div class="l">Industry focus</div>
+      <div class="vt">Healthcare<br/>Manufacturing</div>
+      <div class="l">Focus</div>
     </div>
   </div>
 </div>
