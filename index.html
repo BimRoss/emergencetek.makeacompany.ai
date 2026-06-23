@@ -84,12 +84,29 @@
   :root[data-theme="light"] .btn-ghost { color: var(--text); border-color: var(--line-strong); background: rgba(10,14,26,0.03); }
   :root[data-theme="light"] .btn-ghost:hover { background: rgba(10,14,26,0.07); }
   :root[data-theme="light"] .grid-overlay { opacity: 0.18; }
+  /* Hero stays a dark photo plate in light mode for legibility — same pattern as
+     the infra banner. Veil is a heavier dark scrim, text is forced white. */
   :root[data-theme="light"] .hero-veil {
     background:
-      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.16), transparent 60%),
-      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.16), transparent 60%),
-      linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.55) 70%, rgba(255,255,255,0.85) 100%);
+      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.30), transparent 60%),
+      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.30), transparent 60%),
+      linear-gradient(180deg, rgba(5,7,13,0.65) 0%, rgba(5,7,13,0.80) 60%, rgba(5,7,13,0.95) 100%);
   }
+  :root[data-theme="light"] .hero-copy h1 { color: #FFFFFF; }
+  :root[data-theme="light"] .hero-copy h1 .accent {
+    background: linear-gradient(135deg, #FFFFFF 0%, #4DD0FF 55%, #B998FF 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  :root[data-theme="light"] .hero-sub { color: rgba(255,255,255,0.85); }
+  :root[data-theme="light"] .hero .eyebrow { color: var(--cyan); border-color: rgba(77,208,255,0.40); background: rgba(77,208,255,0.10); }
+  :root[data-theme="light"] .hero .partner-row { border-top-color: rgba(255,255,255,0.18); }
+  :root[data-theme="light"] .hero .partner-row > span,
+  :root[data-theme="light"] .trust-strip .strip-label { color: rgba(255,255,255,0.75); }
+  :root[data-theme="light"] .hero .partner-pill,
+  :root[data-theme="light"] .trust-strip .trust-pill { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.20); color: rgba(255,255,255,0.92); }
+  :root[data-theme="light"] .trust-strip { border-top-color: rgba(255,255,255,0.15); }
+  :root[data-theme="light"] .hero .btn-ghost { color: #FFFFFF; border-color: rgba(255,255,255,0.30); background: rgba(255,255,255,0.10); }
+  :root[data-theme="light"] .hero .btn-ghost:hover { background: rgba(255,255,255,0.18); }
   :root[data-theme="light"] .partner-pill,
   :root[data-theme="light"] .trust-pill,
   :root[data-theme="light"] .card,
