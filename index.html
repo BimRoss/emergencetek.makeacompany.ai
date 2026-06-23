@@ -946,25 +946,34 @@
   .infra-veil {
     position: absolute; inset: 0; z-index: -1;
     background:
-      linear-gradient(180deg, rgba(5,7,13,0.55) 0%, rgba(5,7,13,0.75) 100%),
+      linear-gradient(180deg, rgba(5,7,13,0.78) 0%, rgba(5,7,13,0.88) 100%),
       radial-gradient(60% 80% at 50% 100%, rgba(33,150,243,0.20), transparent 70%);
   }
   .infra-copy {
     max-width: 760px;
+    position: relative;
   }
   .infra-copy h2 {
     font-size: clamp(32px, 4.4vw, 56px);
     margin: 20px 0 18px;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    color: #FFFFFF;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.65), 0 1px 3px rgba(0,0,0,0.6);
   }
   .infra-copy h2 .accent {
-    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+    background: linear-gradient(135deg, #FFFFFF 0%, #7AC7FF 50%, #B998FF 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-shadow: none;
   }
   .infra-copy p {
-    color: var(--text);
+    color: #E6EAF2;
     font-size: 17px;
     max-width: 580px;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+  :root[data-theme="light"] .infra-veil {
+    background:
+      linear-gradient(180deg, rgba(5,7,13,0.80) 0%, rgba(5,7,13,0.90) 100%),
+      radial-gradient(60% 80% at 50% 100%, rgba(33,150,243,0.20), transparent 70%);
   }
 
   /* ===================== ARCHITECTURE SHOWCASE ===================== */
