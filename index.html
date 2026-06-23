@@ -5,8 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
 <title>EmergenceTek Group · AWS Partner · Cloud, Data & Application Engineering</title>
 <meta name="description" content="EmergenceTek Group is an AWS Select Tier Partner delivering cloud migration, data engineering, custom application development, and managed services for healthcare, manufacturing, and retail." />
-<meta name="theme-color" content="#05070D" />
-<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light dark" />
+<script>
+  // Apply saved theme before paint to prevent flash. Default = light.
+  (function () {
+    try {
+      const t = localStorage.getItem('etg-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (_) { document.documentElement.setAttribute('data-theme', 'light'); }
+  })();
+</script>
 <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
 <meta property="og:title" content="EmergenceTek Group · AWS Select Tier Partner" />
 <meta property="og:description" content="Cloud, data, and application engineering for regulated industries. AWS Select Tier Partner based in Buffalo, NY." />
@@ -25,6 +34,12 @@
     --text: #E6EAF2;
     --text-mute: #9AA4B8;
     --text-dim: #6C7791;
+    --surface: rgba(255,255,255,0.04);
+    --surface-2: rgba(255,255,255,0.03);
+    --surface-strong: rgba(255,255,255,0.08);
+    --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    --nav-bg: rgba(5,7,13,0.65);
+    --nav-bg-scrolled: rgba(5,7,13,0.92);
     --cyan: #4DD0FF;
     --cyan-deep: #2196F3;
     --cyan-soft: rgba(77,208,255,0.12);
@@ -39,6 +54,114 @@
     --grad-text: linear-gradient(135deg, #FFFFFF 0%, #4DD0FF 50%, #8B5CF6 100%);
     --halo: radial-gradient(60% 50% at 50% 0%, rgba(77,208,255,0.18), transparent 70%);
   }
+
+  :root[data-theme="light"] {
+    --ink: #FFFFFF;
+    --ink-2: #F4F6FB;
+    --ink-3: #E8ECF4;
+    --line: rgba(10,14,26,0.10);
+    --line-strong: rgba(10,14,26,0.18);
+    --text: #0A0E1A;
+    --text-mute: #4A5366;
+    --text-dim: #6A7384;
+    --surface: rgba(10,14,26,0.03);
+    --surface-2: rgba(10,14,26,0.02);
+    --surface-strong: rgba(10,14,26,0.06);
+    --card-bg: linear-gradient(180deg, rgba(10,14,26,0.03), rgba(10,14,26,0.01));
+    --nav-bg: rgba(255,255,255,0.75);
+    --nav-bg-scrolled: rgba(255,255,255,0.95);
+    --grad-text: linear-gradient(135deg, #0A0E1A 0%, #2196F3 50%, #6D28D9 100%);
+  }
+  :root[data-theme="light"] body { background: var(--ink); }
+  :root[data-theme="light"] .brand .logo-mark svg text { fill: #0A0E1A; }
+  :root[data-theme="light"] .brand-name span { color: var(--cyan-deep); }
+  :root[data-theme="light"] .nav.scrolled,
+  :root[data-theme="light"] header.nav { background: var(--nav-bg); border-bottom-color: var(--line); color: var(--text); }
+  :root[data-theme="light"] header.nav.scrolled { background: var(--nav-bg-scrolled); }
+  :root[data-theme="light"] .nav-toggle { background: rgba(10,14,26,0.06); border-color: var(--line-strong); color: var(--text); }
+  :root[data-theme="light"] .nav-links a { color: var(--text-mute); }
+  :root[data-theme="light"] .nav-links a:hover { color: var(--text); background: rgba(10,14,26,0.05); }
+  :root[data-theme="light"] .btn-ghost { color: var(--text); border-color: var(--line-strong); background: rgba(10,14,26,0.03); }
+  :root[data-theme="light"] .btn-ghost:hover { background: rgba(10,14,26,0.07); }
+  :root[data-theme="light"] .grid-overlay { opacity: 0.18; }
+  :root[data-theme="light"] .hero-veil {
+    background:
+      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.16), transparent 60%),
+      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.16), transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.55) 70%, rgba(255,255,255,0.85) 100%);
+  }
+  :root[data-theme="light"] .partner-pill,
+  :root[data-theme="light"] .trust-pill,
+  :root[data-theme="light"] .card,
+  :root[data-theme="light"] .ind-card,
+  :root[data-theme="light"] .team-card,
+  :root[data-theme="light"] .step-card,
+  :root[data-theme="light"] .cert-pill,
+  :root[data-theme="light"] .pipeline-step,
+  :root[data-theme="light"] .arch-stack-col,
+  :root[data-theme="light"] .arch-diagram,
+  :root[data-theme="light"] .viz-card {
+    background: white;
+    border-color: var(--line);
+    box-shadow: 0 8px 24px rgba(10,14,26,0.05);
+  }
+  :root[data-theme="light"] .card { background: var(--card-bg); }
+  :root[data-theme="light"] .card:hover { background: linear-gradient(180deg, rgba(77,208,255,0.06), rgba(255,255,255,1)); border-color: rgba(77,208,255,0.40); }
+  :root[data-theme="light"] .card .tag { background: rgba(10,14,26,0.04); color: var(--text-mute); border-color: var(--line); }
+  :root[data-theme="light"] .stat-bar { background: var(--ink-2); }
+  :root[data-theme="light"] .stat-bar::before { opacity: 0.08; }
+  :root[data-theme="light"] .stat-bar::after { background: radial-gradient(80% 120% at 50% 50%, transparent 0%, rgba(255,255,255,0.85) 100%); }
+  :root[data-theme="light"] .marquee-item { color: var(--text-dim); }
+  :root[data-theme="light"] .industries { background: linear-gradient(180deg, var(--ink), var(--ink-2)); }
+  :root[data-theme="light"] .ind-card { background: white; }
+  :root[data-theme="light"] .ind-card li { color: var(--text-mute); }
+  :root[data-theme="light"] .certs { background: var(--ink-2); }
+  :root[data-theme="light"] .leadership { background: var(--ink-2); }
+  :root[data-theme="light"] .team-card .role { color: var(--cyan-deep); }
+  :root[data-theme="light"] footer { background: var(--ink-2); border-top-color: var(--line); }
+  :root[data-theme="light"] .foot-col a,
+  :root[data-theme="light"] .foot-col .contact-row { color: var(--text-mute); }
+  :root[data-theme="light"] .foot-col a:hover { color: var(--text); }
+  :root[data-theme="light"] .foot-brand p { color: var(--text-mute); }
+  :root[data-theme="light"] .foot-bottom { color: var(--text-dim); border-top-color: var(--line); }
+  :root[data-theme="light"] .socials a { background: rgba(10,14,26,0.04); border-color: var(--line); color: var(--text-mute); }
+  :root[data-theme="light"] .socials a:hover { color: var(--text); background: rgba(77,208,255,0.10); }
+  :root[data-theme="light"] .cta-card { background: var(--ink-2); }
+  :root[data-theme="light"] .cta-card::before { opacity: 0.30; }
+  :root[data-theme="light"] .cta-card::after { background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.85)); }
+  :root[data-theme="light"] .cta h2, :root[data-theme="light"] .cta p { color: var(--text); text-shadow: none; }
+  :root[data-theme="light"] .infra-veil { background: linear-gradient(180deg, rgba(5,7,13,0.45) 0%, rgba(5,7,13,0.65) 100%); }
+  :root[data-theme="light"] .infra-copy h2, :root[data-theme="light"] .infra-copy p { color: white; }
+  :root[data-theme="light"] .cap-card h4 { color: white; }
+  :root[data-theme="light"] .nav-mobile { background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,246,251,0.98)); border-left-color: var(--line); }
+  :root[data-theme="light"] .nav-mobile-sections a { color: var(--text); border-bottom-color: var(--line); }
+  :root[data-theme="light"] .nav-mobile .mobile-cta a { color: var(--text); border-color: var(--line); }
+  :root[data-theme="light"] .nav-mobile .mobile-cta a.primary { color: white; }
+  :root[data-theme="light"] .nav-mobile-close { background: rgba(10,14,26,0.05); border-color: var(--line); color: var(--text-mute); }
+  :root[data-theme="light"] .nav-mobile-foot { color: var(--text-dim); border-top-color: var(--line); }
+  :root[data-theme="light"] .nav-backdrop { background: rgba(10,14,26,0.35); }
+  :root[data-theme="light"] .eyebrow { background: rgba(33,150,243,0.06); }
+  :root[data-theme="light"] .copied-toast { background: white; color: var(--text); border-color: rgba(33,150,243,0.30); }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    display: inline-flex;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.3); }
+  :root[data-theme="light"] .theme-toggle { background: rgba(10,14,26,0.04); border-color: var(--line-strong); color: var(--text); }
+  :root[data-theme="light"] .theme-toggle:hover { background: rgba(10,14,26,0.08); }
+  .theme-toggle .moon { display: none; }
+  .theme-toggle .sun { display: block; }
+  :root[data-theme="light"] .theme-toggle .moon { display: block; }
+  :root[data-theme="light"] .theme-toggle .sun { display: none; }
 
   *, *::before, *::after { box-sizing: border-box; }
   html, body {
@@ -518,7 +641,7 @@
   }
 
   /* ===================== SECTION WRAP ===================== */
-  section { padding: 110px 0; position: relative; }
+  section { padding: 80px 0; position: relative; }
   @media (max-width: 640px) { section { padding: 44px 0; } }
   .sec-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
   @media (max-width: 640px) { .sec-head { margin-bottom: 32px; } }
@@ -792,7 +915,7 @@
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 60px;
-    align-items: center;
+    align-items: start;
   }
   @media (max-width: 1000px) { .arch-grid { grid-template-columns: 1fr; gap: 36px; } }
   @media (max-width: 640px) { .arch-grid { gap: 28px; } }
@@ -1360,6 +1483,10 @@
         (716) 406-4544
       </a>
       <a href="#contact" class="btn btn-primary">Start a project <span class="arrow">→</span></a>
+      <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle">
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <g class="bars"><path d="M4 6h16M4 12h16M4 18h16"/></g>
@@ -2471,6 +2598,20 @@
 
   // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Theme toggle (light default)
+  const themeToggle = document.getElementById('themeToggle');
+  const setTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('etg-theme', theme); } catch (_) {}
+    const themeColor = theme === 'light' ? '#FFFFFF' : '#05070D';
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', themeColor);
+  };
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(current === 'light' ? 'dark' : 'light');
+  });
 
   // Email copy-on-click fallback for any anchor with data-copy-email.
   // The mailto: still fires (browsers with a registered handler open it);
