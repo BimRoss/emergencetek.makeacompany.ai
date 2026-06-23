@@ -698,6 +698,15 @@
     .stat .l { font-size: 12px; margin-top: 6px; }
   }
   .stat br { display: none; }
+  .map-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(77,208,255,0.45);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color .2s, color .2s;
+  }
+  .map-link:hover { color: var(--cyan); text-decoration-color: var(--cyan); }
   .stat-tagline {
     text-align: center;
     margin: 0 0 36px;
@@ -1659,8 +1668,7 @@
     <a class="primary" href="#contact">Start a project</a>
   </div>
   <div class="nav-mobile-foot">
-    300 International Drive, Suite 100<br/>
-    Buffalo, NY 14221<br/>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=EmergenceTek+Group+300+International+Drive+Suite+100+Buffalo+NY+14221" target="_blank" rel="noopener">300 International Drive, Suite 100<br/>Buffalo, NY 14221</a><br/>
     <a href="mailto:connect@emergencetek.com">connect@emergencetek.com</a>
   </div>
 </aside>
@@ -1839,7 +1847,7 @@
   <div class="container stats stats-text reveal-stagger">
     <div class="stat">
       <div class="vt">Transforming businesses through technology since 2012</div>
-      <div class="l">Buffalo, NY</div>
+      <div class="l"><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=EmergenceTek+Group+300+International+Drive+Suite+100+Buffalo+NY+14221" target="_blank" rel="noopener">Buffalo, NY</a></div>
     </div>
     <div class="stat">
       <div class="vt">AWS Select Tier</div>
@@ -2612,7 +2620,7 @@
         <ul>
           <li class="contact-row">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            300 International Drive, Suite 100<br/>Buffalo, NY 14221
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=EmergenceTek+Group+300+International+Drive+Suite+100+Buffalo+NY+14221" target="_blank" rel="noopener">300 International Drive, Suite 100<br/>Buffalo, NY 14221</a>
           </li>
           <li class="contact-row">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
