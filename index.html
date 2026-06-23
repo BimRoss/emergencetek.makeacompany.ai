@@ -1364,7 +1364,10 @@
   @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
   @media (max-width: 540px) { .foot-grid { grid-template-columns: 1fr; gap: 32px; } }
   .foot-col .contact-row { word-break: break-word; overflow-wrap: anywhere; }
-  .foot-brand p { color: var(--text-mute); font-size: 14px; margin: 18px 0 0; max-width: 320px; }
+  .foot-brand p { color: var(--text-mute); font-size: 14px; margin: 22px 0 0; max-width: 320px; }
+  .foot-brand-mark { display: inline-block; padding: 14px 18px; border-radius: 14px; background: white; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  .foot-brand-mark img { display: block; width: auto; height: 56px; }
+  :root[data-theme="light"] .foot-brand-mark { background: transparent; padding: 0; box-shadow: none; }
   .foot-col h5 {
     margin: 0 0 18px;
     font-size: 12px;
@@ -2487,30 +2490,8 @@
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="brand" style="font-size: 18px;" aria-label="EmergenceTek Group">
-          <span class="logo-mark" style="width: 60px; height: 48px;">
-            <svg viewBox="0 0 50 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="etg-fill-foot" x1="0" y1="0" x2="0.6" y2="1">
-                  <stop offset="0" stop-color="#FFFFFF"/>
-                  <stop offset="1" stop-color="#9BDDFF"/>
-                </linearGradient>
-                <linearGradient id="etg-arc-foot" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#4DD0FF" stop-opacity="0"/>
-                  <stop offset="0.18" stop-color="#4DD0FF"/>
-                  <stop offset="0.55" stop-color="#7AC7FF"/>
-                  <stop offset="0.85" stop-color="#8B5CF6"/>
-                  <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M 1.5 11 C 12 -1.5 38 -1.5 48.5 11" stroke="url(#etg-arc-foot)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-              <text x="25" y="34" text-anchor="middle" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="22" letter-spacing="0.6" fill="url(#etg-fill-foot)">ETG</text>
-            </svg>
-          </span>
-          <span class="brand-name">
-            <b>EmergenceTek</b>
-            <span>Group</span>
-          </span>
+        <div class="foot-brand-mark">
+          <img src="/img/logo/etg-official.png" alt="EmergenceTek Group" width="220" height="95" />
         </div>
         <p>Cloud, data, and software engineering for healthcare, manufacturing, and retail. Based in Buffalo, NY. AWS Select Tier Partner.</p>
       </div>
