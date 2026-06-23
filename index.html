@@ -644,14 +644,15 @@
   .stat .v .suf { font-size: 0.6em; color: var(--cyan); -webkit-text-fill-color: var(--cyan); }
   .stat .vt {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(20px, 2.4vw, 28px);
+    font-size: clamp(16px, 1.7vw, 21px);
     font-weight: 700;
     letter-spacing: -0.01em;
     background: var(--grad-text);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    line-height: 1.15;
+    line-height: 1.25;
+    text-wrap: balance;
   }
   .stat-tagline {
     text-align: center;
@@ -1732,12 +1733,9 @@
 
 <!-- ============================== STAT BAR ============================== -->
 <div class="stat-bar">
-  <div class="container">
-    <p class="stat-tagline reveal">Transforming businesses through technology since 2012 · Buffalo, NY</p>
-  </div>
   <div class="container stats stats-text reveal-stagger">
     <div class="stat">
-      <div class="vt">Since 2012</div>
+      <div class="vt">Transforming businesses through technology since 2012</div>
       <div class="l">Buffalo, NY</div>
     </div>
     <div class="stat">
@@ -1745,11 +1743,11 @@
       <div class="l">Service Partners</div>
     </div>
     <div class="stat">
-      <div class="vt">HIPAA &amp; SOC 2</div>
-      <div class="l">Aware delivery</div>
+      <div class="vt">HIPAA-aware delivery</div>
+      <div class="l">+ SOC 2 Advisory</div>
     </div>
     <div class="stat">
-      <div class="vt">Healthcare<br/>&amp; Manufacturing</div>
+      <div class="vt">Healthcare, Manufacturing &amp; Retail</div>
       <div class="l">Vertical Focuses</div>
     </div>
   </div>
