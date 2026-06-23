@@ -316,7 +316,8 @@
   }
   .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
   .nav-cta { display: flex; align-items: center; gap: 10px; }
-  .nav-cta .btn { padding: 10px 18px; font-size: 14px; }
+  .nav-cta .btn { padding: 10px 18px; font-size: 14px; white-space: nowrap; }
+  .nav-cta .btn-ghost { gap: 8px; }
 
   .nav-toggle {
     display: inline-flex;
@@ -331,8 +332,11 @@
   }
   .nav-toggle:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.25); }
 
-  @media (max-width: 960px) {
-    .nav-links, .nav-cta .btn-ghost { display: none; }
+  @media (max-width: 1100px) {
+    .nav-links { display: none; }
+  }
+  @media (max-width: 760px) {
+    .nav-cta .btn-ghost { display: none; }
   }
   @media (max-width: 520px) {
     header.nav { padding: 10px 0; }
