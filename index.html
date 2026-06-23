@@ -162,7 +162,7 @@
   .nav-cta .btn { padding: 10px 18px; font-size: 14px; }
 
   .nav-toggle {
-    display: none;
+    display: inline-flex;
     width: 40px; height: 40px;
     border-radius: 10px;
     background: rgba(255,255,255,0.05);
@@ -170,11 +170,12 @@
     color: var(--text);
     align-items: center; justify-content: center;
     cursor: pointer;
+    margin-left: 6px;
   }
+  .nav-toggle:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.25); }
 
   @media (max-width: 960px) {
     .nav-links, .nav-cta .btn-ghost { display: none; }
-    .nav-toggle { display: inline-flex; }
   }
   @media (max-width: 520px) {
     header.nav { padding: 10px 0; }
@@ -205,12 +206,19 @@
     .partner-pill { font-size: 12px; padding: 6px 10px; }
   }
   .hero-bg {
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url('/img/photo/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: var(--ink);
+  }
+  .hero-veil {
     position: absolute; inset: 0; z-index: -1;
     background:
-      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.18), transparent 60%),
-      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.18), transparent 60%),
-      radial-gradient(45% 45% at 50% 95%, rgba(255,158,44,0.10), transparent 60%),
-      var(--ink);
+      radial-gradient(60% 60% at 20% 10%, rgba(33,150,243,0.22), transparent 60%),
+      radial-gradient(50% 60% at 85% 20%, rgba(139,92,246,0.22), transparent 60%),
+      radial-gradient(45% 45% at 50% 95%, rgba(255,158,44,0.12), transparent 60%),
+      linear-gradient(180deg, rgba(5,7,13,0.45) 0%, rgba(5,7,13,0.75) 70%, rgba(5,7,13,0.95) 100%);
   }
   .grid-overlay {
     position: absolute; inset: 0; z-index: -1; opacity: 0.4;
@@ -500,7 +508,7 @@
 
   /* ===================== SECTION WRAP ===================== */
   section { padding: 110px 0; position: relative; }
-  @media (max-width: 640px) { section { padding: 56px 0; } }
+  @media (max-width: 640px) { section { padding: 44px 0; } }
   .sec-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
   @media (max-width: 640px) { .sec-head { margin-bottom: 32px; } }
   .sec-head h2 {
@@ -1025,29 +1033,76 @@
   }
   .team-card .li-link svg { flex-shrink: 0; }
 
-  /* ===================== MOBILE NAV PANEL ===================== */
+  /* ===================== SIDE TRAY NAV ===================== */
+  .nav-backdrop {
+    position: fixed; inset: 0; z-index: 95;
+    background: rgba(5,7,13,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  body.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+
   .nav-mobile {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 90;
-    background: rgba(5,7,13,0.96);
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 100;
+    width: min(420px, 88vw);
+    background: linear-gradient(180deg, rgba(10,14,26,0.98), rgba(5,7,13,0.98));
     backdrop-filter: saturate(180%) blur(28px);
     -webkit-backdrop-filter: saturate(180%) blur(28px);
-    padding: 96px 24px 40px;
+    border-left: 1px solid var(--line-strong);
+    box-shadow: -40px 0 80px rgba(0,0,0,0.6);
+    padding: 28px;
     display: flex; flex-direction: column;
-    opacity: 0; pointer-events: none;
-    transition: opacity .2s ease;
+    transform: translateX(100%);
+    transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
   }
-  body.nav-open .nav-mobile { opacity: 1; pointer-events: auto; }
+  body.nav-open .nav-mobile { transform: translateX(0); }
   body.nav-open { overflow: hidden; }
-  .nav-mobile a {
-    display: block;
+
+  .nav-mobile-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 22px;
+  }
+  .nav-mobile-head .tray-label {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text-dim); font-weight: 700;
+  }
+  .nav-mobile-close {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line-strong);
+    color: var(--text-mute);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .nav-mobile-close:hover { color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.10); }
+
+  .nav-mobile-sections { display: flex; flex-direction: column; }
+  .nav-mobile-sections a {
+    display: flex; align-items: center; justify-content: space-between;
     padding: 18px 4px;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 19px;
+    font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--text);
     border-bottom: 1px solid var(--line);
+    transition: color .15s, padding-left .2s;
   }
-  .nav-mobile a:hover { color: var(--cyan); }
+  .nav-mobile-sections a::after {
+    content: '→';
+    color: var(--text-dim);
+    font-size: 16px;
+    transition: transform .2s, color .2s;
+  }
+  .nav-mobile-sections a:hover { color: var(--cyan); padding-left: 8px; }
+  .nav-mobile-sections a:hover::after { color: var(--cyan); transform: translateX(4px); }
+
   .nav-mobile .mobile-cta {
     margin-top: 28px;
     display: flex; flex-direction: column; gap: 10px;
@@ -1058,12 +1113,27 @@
     font-size: 15px;
     text-align: center;
     border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-weight: 600;
+    transition: all .15s;
   }
+  .nav-mobile .mobile-cta a:hover { background: rgba(255,255,255,0.06); }
   .nav-mobile .mobile-cta a.primary {
     background: var(--grad-2);
     border-color: transparent;
     box-shadow: 0 8px 24px rgba(33,150,243,0.3);
+    color: white;
   }
+  .nav-mobile-foot {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .nav-mobile-foot a { color: var(--text-mute); }
+  .nav-mobile-foot a:hover { color: var(--text); }
   .nav-toggle svg .x { display: none; }
   body.nav-open .nav-toggle svg .bars { display: none; }
   body.nav-open .nav-toggle svg .x { display: block; }
@@ -1269,22 +1339,37 @@
   </div>
 </header>
 
-<div class="nav-mobile" id="navMobile" aria-hidden="true">
-  <a href="#services">Services</a>
-  <a href="#industries">Industries</a>
-  <a href="#platform">Platform</a>
-  <a href="#team">Leadership</a>
-  <a href="#process">Process</a>
-  <a href="#about">About</a>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+<aside class="nav-mobile" id="navMobile" aria-hidden="true" aria-label="Site navigation">
+  <div class="nav-mobile-head">
+    <span class="tray-label">EmergenceTek · Menu</span>
+    <button class="nav-mobile-close" aria-label="Close menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile-sections">
+    <a href="#services">Services</a>
+    <a href="#industries">Industries</a>
+    <a href="#platform">Platform</a>
+    <a href="#team">Leadership</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </nav>
   <div class="mobile-cta">
     <a href="tel:+17164064544">(716) 406-4544</a>
     <a class="primary" href="#contact">Start a project</a>
   </div>
-</div>
+  <div class="nav-mobile-foot">
+    300 International Drive, Suite 100<br/>
+    Buffalo, NY 14221<br/>
+    <a href="mailto:connect@emergencetek.com">connect@emergencetek.com</a>
+  </div>
+</aside>
 
 <!-- ============================== HERO ============================== -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
   <div class="grid-overlay"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -2355,15 +2440,20 @@
     }, 350);
   }, { passive: true });
 
-  // Mobile menu
+  // Side-tray nav
   const toggle = document.querySelector('.nav-toggle');
   const mobile = document.getElementById('navMobile');
+  const backdrop = document.getElementById('navBackdrop');
+  const closeBtn = mobile.querySelector('.nav-mobile-close');
   const setOpen = (open) => {
     document.body.classList.toggle('nav-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     mobile.setAttribute('aria-hidden', open ? 'false' : 'true');
+    backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
   };
   toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('nav-open')));
+  closeBtn.addEventListener('click', () => setOpen(false));
+  backdrop.addEventListener('click', () => setOpen(false));
   mobile.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') setOpen(false);
   });
