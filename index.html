@@ -1005,12 +1005,11 @@
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(50% 50% at 50% 0%, rgba(77,208,255,0.10), transparent);
   }
-  .arch-diagram svg { width: 100%; height: auto; position: relative; display: block; }
-  .arch-stack { display: none; }
+  .arch-diagram .arch-svg-wrap { display: none; }
+  .arch-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: relative; }
   @media (max-width: 760px) {
     .arch-diagram { padding: 22px 18px; }
-    .arch-diagram .arch-svg-wrap { display: none; }
-    .arch-stack { display: flex; flex-direction: column; gap: 14px; position: relative; }
+    .arch-stack { grid-template-columns: 1fr; }
   }
   .arch-stack-col {
     background: rgba(255,255,255,0.03);
@@ -1038,6 +1037,7 @@
   .arch-stack-col li b { font-weight: 700; color: var(--text); }
   .arch-stack-col li span { color: var(--text-dim); font-size: 12px; }
   .arch-stack-foot {
+    grid-column: 1 / -1;
     margin-top: 6px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -2135,37 +2135,7 @@
       <div class="arch-copy reveal">
         <h2 class="display">From raw event to executive dashboard, fully governed.</h2>
         <p>The platform brings provisioning, identity, observability, cost guardrails, and CI/CD together as a coherent whole. We hand it over with the documentation and patterns your team needs to own it confidently.</p>
-
-        <div class="pipeline">
-          <div class="pipeline-step">
-            <span class="num">01</span>
-            <div>
-              <div class="lbl">Ingest</div>
-              <div class="desc">Kinesis Firehose, MSK, AppFlow, EDI VAN — every source lands in S3 as immutable raw events.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <span class="num">02</span>
-            <div>
-              <div class="lbl">Curate</div>
-              <div class="desc">Glue + dbt build silver/gold tables. Lineage and data contracts enforced in CI.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <span class="num">03</span>
-            <div>
-              <div class="lbl">Serve</div>
-              <div class="desc">Redshift for warehouse SQL, Athena for ad-hoc, OpenSearch for log analytics, Aurora for apps.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <span class="num">04</span>
-            <div>
-              <div class="lbl">Activate</div>
-              <div class="desc">QuickSight, embedded BI, reverse-ETL into Salesforce / HubSpot / your ops tool.</div>
-            </div>
-          </div>
-        </div>
+        <p>Every workload follows the same shape — <b>Ingest</b> raw events into immutable storage, <b>Curate</b> them into governed silver and gold tables, <b>Serve</b> through the right system for the question, and <b>Activate</b> back into the tools your team already uses.</p>
 
         <div class="brief-actions">
           <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=connect@emergencetek.com&amp;su=Architecture%20brief%20request&amp;body=A%20few%20lines%20on%20your%20current%20stack%2C%20team%2C%20and%20what%20you%27re%20trying%20to%20solve%3A%0A%0A" target="_blank" rel="noopener" class="btn btn-primary">Request the brief <span class="arrow">→</span></a>
