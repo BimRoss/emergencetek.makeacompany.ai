@@ -23,7 +23,7 @@
 <meta property="og:image" content="/img/og.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --ink: #05070D;
@@ -279,11 +279,13 @@
   .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
   .brand .logo-mark {
-    width: 50px; height: 40px;
+    width: 60px; height: 44px;
     display: grid; place-items: center;
     position: relative;
   }
-  .brand .logo-mark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 4px 16px rgba(77,208,255,0.25)); }
+  .brand .logo-mark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 4px 14px rgba(45,107,190,0.35)); }
+  .brand .etg-mark .etg-letters { paint-order: stroke fill; stroke: rgba(255,255,255,0.06); stroke-width: 0.4; }
+  :root[data-theme="light"] .brand .logo-mark svg { filter: drop-shadow(0 2px 6px rgba(45,107,190,0.25)); }
   .brand-name { display: flex; flex-direction: column; line-height: 1.05; }
   .brand-name b { font-weight: 800; font-size: 17px; }
   .brand-name span { font-size: 9.5px; letter-spacing: 0.22em; color: var(--cyan); text-transform: uppercase; font-weight: 700; margin-top: 3px; opacity: 0.85; }
@@ -1484,23 +1486,34 @@
 <header class="nav" id="nav">
   <div class="container nav-row">
     <a href="#" class="brand" aria-label="EmergenceTek Group">
-      <span class="logo-mark">
-        <svg viewBox="0 0 50 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <span class="logo-mark etg-mark">
+        <svg viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="etg-fill-nav" x1="0" y1="0" x2="0.6" y2="1">
-              <stop offset="0" stop-color="#FFFFFF"/>
-              <stop offset="1" stop-color="#9BDDFF"/>
+            <linearGradient id="etg-letters-nav" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5FA0E6"/>
+              <stop offset="0.45" stop-color="#2D6BBE"/>
+              <stop offset="1" stop-color="#1A4D95"/>
             </linearGradient>
-            <linearGradient id="etg-arc-nav" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#4DD0FF" stop-opacity="0"/>
-              <stop offset="0.18" stop-color="#4DD0FF"/>
-              <stop offset="0.55" stop-color="#7AC7FF"/>
-              <stop offset="0.85" stop-color="#8B5CF6"/>
-              <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+            <linearGradient id="etg-arc-base" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#1A4D95"/>
+              <stop offset="0.5" stop-color="#4F86CC"/>
+              <stop offset="1" stop-color="#1A4D95"/>
             </linearGradient>
+            <linearGradient id="etg-arc-shimmer" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#E6F1FF" stop-opacity="0"/>
+              <stop offset="0.45" stop-color="#E6F1FF" stop-opacity="0.95"/>
+              <stop offset="0.55" stop-color="#E6F1FF" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#E6F1FF" stop-opacity="0"/>
+              <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="3.6s" repeatCount="indefinite"/>
+            </linearGradient>
+            <filter id="etg-glow" x="-20%" y="-30%" width="140%" height="160%">
+              <feGaussianBlur stdDeviation="1.4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
           </defs>
-          <path d="M 1.5 11 C 12 -1.5 38 -1.5 48.5 11" stroke="url(#etg-arc-nav)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-          <text x="25" y="34" text-anchor="middle" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="22" letter-spacing="0.6" fill="url(#etg-fill-nav)">ETG</text>
+          <path d="M 2 19 C 14 -2 46 -2 58 19" stroke="url(#etg-arc-base)" stroke-width="3.2" fill="none" stroke-linecap="round" filter="url(#etg-glow)"/>
+          <path d="M 2 19 C 14 -2 46 -2 58 19" stroke="url(#etg-arc-shimmer)" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+          <text class="etg-letters" x="30" y="40" text-anchor="middle" font-family="'Oswald','Arial Narrow','Arial Black',sans-serif" font-weight="700" font-size="30" letter-spacing="-0.5" fill="url(#etg-letters-nav)">ETG</text>
         </svg>
       </span>
       <span class="brand-name">
