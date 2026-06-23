@@ -497,6 +497,17 @@
     line-height: 1;
   }
   .stat .v .suf { font-size: 0.6em; color: var(--cyan); -webkit-text-fill-color: var(--cyan); }
+  .stat .vt {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.15;
+  }
   .stat .l {
     margin-top: 10px;
     font-size: 13px;
@@ -1483,33 +1494,6 @@
         </div>
       </div>
 
-      <div class="metric-chip chip-1">
-        <span class="ic cyan">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
-        </span>
-        <span>
-          <span class="v">99.99%</span>
-          <span class="l">SLO uptime</span>
-        </span>
-      </div>
-      <div class="metric-chip chip-2">
-        <span class="ic amber">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </span>
-        <span>
-          <span class="v">112 TB</span>
-          <span class="l">data under mgmt</span>
-        </span>
-      </div>
-      <div class="metric-chip chip-3">
-        <span class="ic green">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
-        </span>
-        <span>
-          <span class="v">SOC 2 ready</span>
-          <span class="l">controls in flight</span>
-        </span>
-      </div>
     </div>
 
     <div class="trust-strip reveal">
@@ -1564,22 +1548,22 @@
 
 <!-- ============================== STAT BAR ============================== -->
 <div class="stat-bar">
-  <div class="container stats reveal-stagger">
+  <div class="container stats stats-text reveal-stagger">
     <div class="stat">
-      <div class="v" data-count="14"><span class="num">0</span><span class="suf">+</span></div>
-      <div class="l">Years in business</div>
+      <div class="vt">Since 2012</div>
+      <div class="l">Buffalo, NY</div>
     </div>
     <div class="stat">
-      <div class="v" data-count="120"><span class="num">0</span><span class="suf">+</span></div>
-      <div class="l">Production launches</div>
+      <div class="vt">AWS Select Tier</div>
+      <div class="l">Partner</div>
     </div>
     <div class="stat">
-      <div class="v" data-count="35"><span class="num">0</span><span class="suf">+</span></div>
-      <div class="l">Certified engineers</div>
+      <div class="vt">HIPAA &amp; SOC 2</div>
+      <div class="l">Aware delivery</div>
     </div>
     <div class="stat">
-      <div class="v" data-count="99" data-suffix=".99%"><span class="num">0</span><span class="suf">.99%</span></div>
-      <div class="l">Avg platform SLO</div>
+      <div class="vt">Healthcare<br/>Manufacturing<br/>Retail</div>
+      <div class="l">Industry focus</div>
     </div>
   </div>
 </div>
@@ -2475,27 +2459,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
-  // Animated counters
-  const countIO = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const target = parseFloat(el.dataset.count);
-      const numEl = el.querySelector('.num');
-      const start = performance.now();
-      const duration = 1400;
-      const tick = (t) => {
-        const p = Math.min(1, (t - start) / duration);
-        const eased = 1 - Math.pow(1 - p, 3);
-        numEl.textContent = Math.round(target * eased).toLocaleString();
-        if (p < 1) requestAnimationFrame(tick);
-        else numEl.textContent = target.toLocaleString();
-      };
-      requestAnimationFrame(tick);
-      countIO.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
 </script>
 
 </body>
